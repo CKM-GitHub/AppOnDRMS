@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppOnDRMS", "AppOnDRMS\AppO
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DRMS_BL", "DRMS_BL\DRMS_BL.csproj", "{34F58E6A-645F-415E-AA44-F05EF723F02F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DRMS_Models", "DRMS_Models\DRMS_Models.csproj", "{09F5B279-FA5C-40BB-B0B6-2765982CF82D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{34F58E6A-645F-415E-AA44-F05EF723F02F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34F58E6A-645F-415E-AA44-F05EF723F02F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34F58E6A-645F-415E-AA44-F05EF723F02F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09F5B279-FA5C-40BB-B0B6-2765982CF82D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09F5B279-FA5C-40BB-B0B6-2765982CF82D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09F5B279-FA5C-40BB-B0B6-2765982CF82D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09F5B279-FA5C-40BB-B0B6-2765982CF82D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -124,7 +124,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -136,6 +135,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="RequireDLL\CKM_CommonFunction.dll" />
+    <Content Include="RequireDLL\CKM_DataLayer.dll" />
+    <Content Include="RequireDLL\Newtonsoft.Json.dll" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -166,6 +168,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -179,6 +182,16 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DRMS_BL\DRMS_BL.csproj">
+      <Project>{34f58e6a-645f-415e-aa44-f05ef723f02f}</Project>
+      <Name>DRMS_BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DRMS_Models\DRMS_Models.csproj">
+      <Project>{09f5b279-fa5c-40bb-b0b6-2765982cf82d}</Project>
+      <Name>DRMS_Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
