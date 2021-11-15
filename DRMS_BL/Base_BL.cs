@@ -4,11 +4,16 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DRMS_Models;
 
 namespace DRMS_BL
 {
     public class Base_BL
     {
+        public Base_BL()
+        {
+
+        }
         public string Date_Checking(string inputdate)
         {
 
@@ -111,6 +116,18 @@ namespace DRMS_BL
             {
                 return false;
             }
+        }
+
+        public string ByteLengthCheck(BaseModel baseModel)
+        {
+            //if (baseModel.param1 != null)
+            //{
+            //    int i = Encoding.GetEncoding(932).GetByteCount(baseModel.param1);
+            //    if (i > Convert.ToInt32(baseModel.param2))
+            //        return "0";
+            //    return "1";
+            //}
+            return "1";
         }
 
     }
