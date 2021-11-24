@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="@Url.Content("~/css/bootstrap.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/css/login.css")">
+
+    <title>WEB日報管理システム - 山本建設株式会社</title>
+</head>
+<body>
+
+    @RenderBody()
+
+    <script src="@Url.Content("~/js/jquery-3.3.1.slim.min.js")"></script>
+    <script src="@Url.Content("~/js/popper.min.js")"></script>
+    <script src="@Url.Content("~/js/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/js/js.js")"></script>
+
+    @RenderSection("scripts", required: false)
+    @RenderSection("styles", required: false)
+</body>
+</html>
