@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DRMS_Models", "DRMS_Models\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Base_BL", "Base_BL\Base_BL.csproj", "{F50A091D-2DBF-4A07-9381-2CD5B76254D7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "User_BL", "User_BL\User_BL.csproj", "{60DE8983-2899-49FC-A947-33615DC6F612}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{F50A091D-2DBF-4A07-9381-2CD5B76254D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F50A091D-2DBF-4A07-9381-2CD5B76254D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F50A091D-2DBF-4A07-9381-2CD5B76254D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60DE8983-2899-49FC-A947-33615DC6F612}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60DE8983-2899-49FC-A947-33615DC6F612}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60DE8983-2899-49FC-A947-33615DC6F612}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60DE8983-2899-49FC-A947-33615DC6F612}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

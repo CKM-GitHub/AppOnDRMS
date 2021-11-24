@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using DRMS_Models;
+using User_BL;
 
 namespace AppOnDRMS.Controllers
 {
-    public class UserApiController : Controller
+    public class UserApiController : Controllers
     {
         // GET: UserApi
         [HttpPost]
         [ActionName("GetUser")]
-        public ActionResult GetUser()
+        public ActionResult GetUser([FromBody] UserModel userModel)
         {
-            return View();
+            UserBL userBL = new UserBL();
+            return Ok(userBL.GetUser(userModel));
         }
     }
 }
