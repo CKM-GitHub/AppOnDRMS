@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DRMS_Models;
 
 namespace Base_BL
 {
     public class BaseBL
     {
-        public Base_BL()
+        public class Base_BL()
         {
 
         }
