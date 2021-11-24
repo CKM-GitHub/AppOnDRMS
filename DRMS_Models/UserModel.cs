@@ -7,10 +7,10 @@ using System.Data.SqlClient;
 
 namespace DRMS_Models
 {
-    public class UserModel
+    public class UserModel:BaseModel
     {
         public string Password { get; set; }
 
-        public SqlParameter[] Sqlprms { get; set; }
+        
     }
 }
