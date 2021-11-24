@@ -173,7 +173,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\DailyReport\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -182,6 +181,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="packages.config" />
     <Content Include="Views\User\UserLogin.cshtml" />
+    <Content Include="Views\Shared\_DRMSLayout.cshtml" />
+    <Content Include="Views\DailyReport\DailyReportEntry.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DRMS_Models\DRMS_Models.csproj">
