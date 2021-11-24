@@ -9,7 +9,7 @@ namespace AppOnDRMS.Controllers
     public class UserController : Controller
     {
         // GET: User
-        public ActionResult UserLogin()
+        public ActionResult UserLogin() 
         {
             return View();
         }
