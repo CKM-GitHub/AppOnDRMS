@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 using DRMS_Models;
 using CKM_CommonFunction;
 using CKM_DataLayer;
-using Base_BL;
 using System.Data.SqlClient;
 
 namespace WorkHistory_BL
 {
-    public class WorkHistoryBL:BaseBL
+    public class WorkHistoryBL
     {
         CKMDL cKMDL;
         FileFunction ff;

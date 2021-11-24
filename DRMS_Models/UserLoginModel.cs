@@ -7,10 +7,8 @@ using System.Data.SqlClient;
 
 namespace DRMS_Models
 {
-    public class UserModel:BaseModel
+    public class UserLoginModel:BaseModel
     {
-        public string Password { get; set; }
-
-        
+        public string member_id { get; set; }
     }
 }

@@ -129,7 +129,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\UserApiController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -145,13 +144,16 @@
     <Content Include="images\bg.jpg" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\Common.js" />
+    <Content Include="js\jquery-3.3.1.min.js" />
     <Content Include="js\jquery-3.3.1.slim.min.js" />
     <Content Include="js\js.js" />
     <Content Include="js\popper.min.js" />
     <Content Include="RequireDLL\CKM_CommonFunction.dll" />
     <Content Include="RequireDLL\CKM_DataLayer.dll" />
     <Content Include="RequireDLL\Newtonsoft.Json.dll" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -179,13 +181,17 @@
     <Content Include="Views\User\UserLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Base_BL\Base_BL.csproj">
-      <Project>{f50a091d-2dbf-4a07-9381-2cd5b76254d7}</Project>
-      <Name>Base_BL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DRMS_Models\DRMS_Models.csproj">
       <Project>{09f5b279-fa5c-40bb-b0b6-2765982cf82d}</Project>
       <Name>DRMS_Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\User_BL\User_BL.csproj">
+      <Project>{60de8983-2899-49fc-a947-33615dc6f612}</Project>
+      <Name>User_BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WorkHistory_BL\WorkHistory_BL.csproj">
+      <Project>{0d457c2c-ff93-4f30-9cba-191d177ce1d6}</Project>
+      <Name>WorkHistory_BL</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

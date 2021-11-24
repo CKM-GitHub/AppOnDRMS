@@ -31,12 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CKM_CommonFunction">
-      <HintPath>..\..\..\TestPJ\TestingApi\Testing\RequireDLL\CKM_CommonFunction.dll</HintPath>
-    </Reference>
-    <Reference Include="CKM_DataLayer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\CKM_DataLayer.dll</HintPath>
+    <Reference Include="CKM_DataLayer">
+      <HintPath>..\..\..\Shinyoh\Shinyoh\Shinyoh\RequireDLL\CKM_DataLayer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

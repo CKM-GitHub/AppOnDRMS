@@ -13,6 +13,5 @@ namespace DRMS_Models
         public string project_id { get; set; }
         public string Attendance_time { get; set; }
         public string Leave_time { get; set; }
-
     }
 }

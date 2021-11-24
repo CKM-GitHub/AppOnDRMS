@@ -32,10 +32,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CKM_CommonFunction">
-      <HintPath>..\Base_BL\bin\Debug\CKM_CommonFunction.dll</HintPath>
+      <HintPath>..\..\..\Shinyoh\Shinyoh\Shinyoh\RequireDLL\CKM_CommonFunction.dll</HintPath>
     </Reference>
     <Reference Include="CKM_DataLayer">
-      <HintPath>..\Base_BL\bin\Debug\CKM_DataLayer.dll</HintPath>
+      <HintPath>..\..\..\Shinyoh\Shinyoh\Shinyoh\RequireDLL\CKM_DataLayer.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -55,10 +55,6 @@
     <Compile Include="WorkHistoryBL.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Base_BL\Base_BL.csproj">
-      <Project>{f50a091d-2dbf-4a07-9381-2cd5b76254d7}</Project>
-      <Name>Base_BL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DRMS_Models\DRMS_Models.csproj">
       <Project>{09f5b279-fa5c-40bb-b0b6-2765982cf82d}</Project>
       <Name>DRMS_Models</Name>
