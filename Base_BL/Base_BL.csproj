@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8C4BFF08-1214-4A19-ADB6-02B09051CEA4}</ProjectGuid>
+    <ProjectGuid>{F50A091D-2DBF-4A07-9381-2CD5B76254D7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Base_BL</RootNamespace>
@@ -31,9 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CKM_CommonFunction, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\CKM_CommonFunction.dll</HintPath>
+    <Reference Include="CKM_CommonFunction">
+      <HintPath>..\..\..\TestPJ\TestingApi\Testing\RequireDLL\CKM_CommonFunction.dll</HintPath>
     </Reference>
     <Reference Include="CKM_DataLayer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

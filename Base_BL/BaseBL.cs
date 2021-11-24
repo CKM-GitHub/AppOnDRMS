@@ -5,14 +5,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DRMS_Models;
+using CKM_CommonFunction;
+using CKM_DataLayer;
 
 namespace Base_BL
 {
     public class BaseBL
     {
-        public class Base_BL()
+        CKMDL cKMDL;
+        FileFunction ff;
+        public BaseBL()
         {
-
+            cKMDL = new CKMDL();
+            ff = new FileFunction();
         }
         public string Date_Checking(string inputdate)
         {
