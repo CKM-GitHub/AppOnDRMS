@@ -135,6 +135,7 @@
     <Content Include="Global.asax" />
     <Content Include="images\bg.jpg" />
     <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\Common.js" />
     <Content Include="js\jquery-3.3.1.slim.min.js" />
     <Content Include="js\js.js" />
     <Content Include="js\popper.min.js" />
@@ -169,10 +170,6 @@
     <Content Include="Views\User\UserLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DRMS_BL\DRMS_BL.csproj">
-      <Project>{34f58e6a-645f-415e-aa44-f05ef723f02f}</Project>
-      <Name>DRMS_BL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DRMS_Models\DRMS_Models.csproj">
       <Project>{09f5b279-fa5c-40bb-b0b6-2765982cf82d}</Project>
       <Name>DRMS_Models</Name>
