@@ -129,6 +129,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserApiController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -143,6 +144,7 @@
     <Content Include="Global.asax" />
     <Content Include="images\bg.jpg" />
     <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\Common.js" />
     <Content Include="js\jquery-3.3.1.slim.min.js" />
     <Content Include="js\js.js" />
     <Content Include="js\popper.min.js" />
@@ -177,9 +179,9 @@
     <Content Include="Views\User\UserLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DRMS_BL\DRMS_BL.csproj">
-      <Project>{34f58e6a-645f-415e-aa44-f05ef723f02f}</Project>
-      <Name>DRMS_BL</Name>
+    <ProjectReference Include="..\Base_BL\Base_BL.csproj">
+      <Project>{f50a091d-2dbf-4a07-9381-2cd5b76254d7}</Project>
+      <Name>Base_BL</Name>
     </ProjectReference>
     <ProjectReference Include="..\DRMS_Models\DRMS_Models.csproj">
       <Project>{09f5b279-fa5c-40bb-b0b6-2765982cf82d}</Project>
