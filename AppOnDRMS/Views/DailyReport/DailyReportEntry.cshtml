@@ -14,18 +14,19 @@
                 <h4 class="form-signin-heading">日報入力</h4>
                 <hr class="colorgraph"><br>
               
-                <label class="required" for="txtmember_name">社員名 :</label><label class="required" for="txtmember_name" id="txtmember_name"></label> <br><br>
+                <label class="required" for="txtmember_name" style="padding-right: 0.2em">社員名 :</label><label class="required" for="txtmember_name" id="txtmember_name"></label><br>
+                
                 <label class="required" for="txtdate">日付</label> <br>
                 <input type="date" id="txtdate" class="form-control" name="date" placeholder="2021/11/16" required="" /><br>
 
                 <label class="required" for="pjname">工事名</label> <br>
-                <select class="form-control input-sm" maxlength="50" tabindex="5" id="pjname" onkeydown="KeyDown(event,this,'RelatedCompanyName')"></select>
+                <select class="form-control input-sm" maxlength="50" tabindex="5" id="pjname" onkeydown="KeyDown(event,this,'RelatedCompanyName')"></select><br>
 
                 <label class="required" for="txtatt_time">出勤時間</label> <br>
                 <input type="time" id="att_start_date" class="form-control" name="starttime" placeholder="12:30" required="" /><br>
 
                 <label class="required" for="txtleave_time">退勤時間</label> <br>
-                <input type="time" id="att_end_date" class="form-control" name="endtime" placeholder="12:30" required="" /><br>
+                <input type="time" id="att_end_date" class="form-control" name="endtime" placeholder="12:30" required="" /><br><br>
 
                 <button id="btnSave" class="btn btn-lg btn-outline-secondary btn-block" name="Submit" value="submit" type="Submit">
                     送信
