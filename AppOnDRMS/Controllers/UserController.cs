@@ -21,5 +21,14 @@ namespace AppOnDRMS.Controllers
             string a = u_BL.GetUser(m);
             return View();
         }
+        [HttpPost]
+        public ActionResult UserLogin(UserLoginModel m_Login)
+        {
+            UserBL u_BL = new UserBL();
+            UserLoginModel m = new UserLoginModel();
+            m.member_id = "admin";
+            string a = u_BL.GetUser(m);
+            return View();
+        }
     }
 }
