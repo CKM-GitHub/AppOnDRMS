@@ -181,8 +181,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="packages.config" />
     <Content Include="Views\User\UserLogin.cshtml" />
-	 <Content Include="Views\Shared\_DRMSLayout.cshtml" />
+    <Content Include="Views\Shared\_DRMSLayout.cshtml" />
     <Content Include="Views\DailyReport\DailyReportEntry.cshtml" />
+    <Content Include="Views\Shared\_LoginLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DRMS_Models\DRMS_Models.csproj">
