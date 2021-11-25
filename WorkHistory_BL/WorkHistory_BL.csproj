@@ -32,10 +32,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CKM_CommonFunction">
-      <HintPath>..\Base_BL\bin\Debug\CKM_CommonFunction.dll</HintPath>
+      <HintPath>..\AppOnDRMS\RequireDLL\CKM_CommonFunction.dll</HintPath>
     </Reference>
     <Reference Include="CKM_DataLayer">
-      <HintPath>..\Base_BL\bin\Debug\CKM_DataLayer.dll</HintPath>
+      <HintPath>..\AppOnDRMS\RequireDLL\CKM_DataLayer.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
