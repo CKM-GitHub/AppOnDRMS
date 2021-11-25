@@ -64,13 +64,20 @@
                     Attendance_time: $("#att_start_date").val(),
                     Leave_time: $("#att_end_date").val(),
                 };
-                var response = CalltoApiController('@Url.Action("DailyReportInsert", "api/DailyReportAPI")', obj);
-                if (response = true) {
-                    alert("Successful input");
-                }
+
+                //if (obj = "") {
+                //    alert("There are unfilled items");
+                //}
                 else {
-                    alert("There are unfilled items");
+                    var response = CalltoApiController('@Url.Action("DailyReportInsert", "api/DailyReportAPI")', obj);
+                    if (response = true) {
+                        alert("Successful input");
+                    }
+                    else {
+                        alert("There are unfilled items");
+                    }
                 }
+                
             })
         });
 
