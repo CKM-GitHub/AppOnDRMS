@@ -42,7 +42,10 @@ namespace AppOnDRMS.Controllers
         public ActionResult Management(string id)
         {
             HttpCookie cookie = HttpContext.Request.Cookies.Get("Admin_Member_ID");
-            return View();
+            if(cookie != null)
+                return View();
+            else
+                return RedirectToAction("UserLogin", "User");
         }
     }
 }
