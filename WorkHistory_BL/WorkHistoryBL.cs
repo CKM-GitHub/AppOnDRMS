@@ -33,5 +33,13 @@ namespace WorkHistory_BL
             return cKMDL.InsertUpdateDeleteData("WorkHistoryInsert", ff.GetConnectionWithDefaultPath("AppOnDRMS"), workmodel.Sqlprms);
         }
 
+        public string GetProjectName(WorkHistoryModel workmodel)
+        {
+            cKMDL.UseTran = true;
+            workmodel.Sqlprms = new SqlParameter[0];
+           
+            return cKMDL.InsertUpdateDeleteData("GetProjectName", ff.GetConnectionWithDefaultPath("AppOnDRMS"), workmodel.Sqlprms);
+        }
+
     }
 }

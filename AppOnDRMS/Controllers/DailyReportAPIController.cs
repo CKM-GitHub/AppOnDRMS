@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using DRMS_Models;
 using WorkHistory_BL;
+using User_BL;
 
 namespace AppOnDRMS.Controllers
 {
@@ -27,5 +28,15 @@ namespace AppOnDRMS.Controllers
 
             return Ok(workbl.GetProjectName(workmodel));
         }
+
+        [HttpPost]
+        [ActionName("Getmember")]
+        public IHttpActionResult Getmember([FromBody]UserLoginModel ulmodel)
+        {
+            UserBL userbl = new UserBL();
+            //string aa = userbl.GetUser(ulmodel);
+            return Ok(userbl.GetUser(ulmodel));
+        }
+        
     }
 }
