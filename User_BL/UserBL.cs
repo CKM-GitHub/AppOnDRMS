@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using CKM_CommonFunction;
 using CKM_DataLayer;
@@ -16,24 +18,20 @@ namespace User_BL
             cKMDL = new CKMDL();
             ff = new FileFunction();
         }
-        public string GetConnectionString()
-        {
-
-            return "Data Source=163.43.113.92;Initial Catalog=AppOnDRMS;Persist Security Info=True;User ID=sa;Password=admin12345!;Connection Timeout=60;";
-        }
-        //public string GetUser(UserLoginModel userModel)
-        //{
-            
-        //    userModel.Sqlprms = new SqlParameter[1];
-        //    userModel.Sqlprms[0] = new SqlParameter("@Member_Id", userModel.member_id);
-        //    return cKMDL.SelectJson("User_Select", GetConnectionString() , userModel.Sqlprms);
-        //}
-
+        
         public string GetUser(UserLoginModel userModel)
         {
             userModel.Sqlprms = new SqlParameter[1];
             userModel.Sqlprms[0] = new SqlParameter("@Member_Id", userModel.member_id);
             return cKMDL.SelectJson("User_Select", ff.GetConnectionWithDefaultPath("AppOnDRMS"), userModel.Sqlprms);
+        }
+        public CompanyModel GetCompanyName()
+        {
+            DataTable dt_companyName = cKMDL.SelectDatatable("Select_CompanyName", ff.GetConnectionWithDefaultPath("AppOnDRMS"));
+            CompanyModel com_Model = new CompanyModel();
+            com_Model.company_id = Convert.ToInt32(dt_companyName.Rows[0]["company_id"].ToString());
+            com_Model.company_name = dt_companyName.Rows[0]["company_name"].ToString();
+            return com_Model;
         }
     }
 }
