@@ -10,5 +10,9 @@ namespace DRMS_Models
     public class UserLoginModel:BaseModel
     {
         public string member_id { get; set; }
+        
+        public int company_id { get; set; }
+       
+        public string company_name { get; set; }
     }
 }

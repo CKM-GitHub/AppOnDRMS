@@ -1,4 +1,5 @@
-﻿@{
+﻿@model DRMS_Models.UserLoginModel
+@{
     Layout = "~/Views/Shared/_LoginLayout.cshtml";
 }
 <canvas class='connecting-dots' id="experiment"></canvas>
@@ -11,25 +12,27 @@
                 <h4 class="form-signin-heading">ログイン</h4>
                 <hr class="colorgraph"><br>
 
-                <input type="password" class="form-control" name="txt_MemberID" placeholder="社員番号" required="" />
+                @Html.TextBoxFor(m => m.member_id, new
+                   {
+                       @class = "form-control",
+                       @type= "password",
+                       @tabindex = "1",
+                       @required = "required",
+                       @id = "txt_Member_ID",
+                       @name = "txt_Member_ID",
+                       @placeholder = "社員番号",
+                       @autofocus = "autofocus",
+                       @maxlength = "20",
+                   })
+
+                @*<input type="password" class="form-control" name="txt_Member_ID" placeholder="社員番号" required="" />*@
 
                 <button class="btn btn-lg btn-outline-secondary btn-block" name="Submit" value="Login"
                         type="Submit">
                     ログイン
                 </button>
-                <h5 class="text-right pt-5">山本建設株式会社</h5>
+                <h5 class="text-right pt-5">@Model.company_name</h5>
             </form>
         </div>
     </div>
 </div>
-
-@section Scripts
-    {
-    <script type="text/javascript">
-        $(document).ready(function () {
-            //$("#txtdate").focus();
-            alert("enter");
-
-        });
-    </script>
-}

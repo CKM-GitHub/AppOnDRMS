@@ -11,6 +11,8 @@ namespace AppOnDRMS.Controllers
         // GET: DailyReport
         public ActionResult DailyReportEntry()
         {
+            HttpCookie cookie = HttpContext.Request.Cookies.Get("Other_Member_ID");
+            string memeber_Id = cookie.Value;
             return View();
         }
     }
