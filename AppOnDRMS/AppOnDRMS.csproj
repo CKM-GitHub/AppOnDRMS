@@ -128,6 +128,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\DailyReportAPIController.cs" />
+    <Compile Include="Controllers\DailyReportController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -179,7 +181,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="packages.config" />
     <Content Include="Views\User\UserLogin.cshtml" />
-    <Content Include="Views\Shared\_LoginLayout.cshtml" />
+	 <Content Include="Views\Shared\_DRMSLayout.cshtml" />
+    <Content Include="Views\DailyReport\DailyReportEntry.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DRMS_Models\DRMS_Models.csproj">

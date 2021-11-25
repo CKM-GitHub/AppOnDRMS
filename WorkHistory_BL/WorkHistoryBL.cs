@@ -20,14 +20,15 @@ namespace WorkHistory_BL
             ff = new FileFunction();
         }
 
-        public string WorkHistoryInsert(WorkHistoryModel workmodel)
+        public string DailyReportInsert(WorkHistoryModel workmodel)
         {
             cKMDL.UseTran = true;
-            workmodel.Sqlprms = new SqlParameter[4];
+            workmodel.Sqlprms = new SqlParameter[5];
             workmodel.Sqlprms[0] = new SqlParameter("@work_date", workmodel.work_date);
             workmodel.Sqlprms[1] = new SqlParameter("@project_id", workmodel.project_id);
             workmodel.Sqlprms[2] = new SqlParameter("@Attendance_time", workmodel.Attendance_time);
             workmodel.Sqlprms[3] = new SqlParameter("@Leave_time", workmodel.Leave_time);
+            workmodel.Sqlprms[4] = new SqlParameter("@member_id", workmodel.member_id);
 
             return cKMDL.InsertUpdateDeleteData("WorkHistoryInsert", ff.GetConnectionWithDefaultPath("AppOnDRMS"), workmodel.Sqlprms);
         }
