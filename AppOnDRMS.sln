@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1684
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppOnDRMS", "AppOnDRMS\AppOnDRMS.csproj", "{888BA256-3DD5-4C62-9204-A16FD06D5D7E}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "User_BL", "User_BL\User_BL.csproj", "{60DE8983-2899-49FC-A947-33615DC6F612}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkHistory_BL", "WorkHistory_BL\WorkHistory_BL.csproj", "{0D457C2C-FF93-4F30-9CBA-191D177CE1D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConstructionList_BL", "ConstructionList_BL\ConstructionList_BL.csproj", "{AFBCAC22-37B4-4F3C-A22F-D6BCE118D40E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{0D457C2C-FF93-4F30-9CBA-191D177CE1D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D457C2C-FF93-4F30-9CBA-191D177CE1D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D457C2C-FF93-4F30-9CBA-191D177CE1D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFBCAC22-37B4-4F3C-A22F-D6BCE118D40E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFBCAC22-37B4-4F3C-A22F-D6BCE118D40E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFBCAC22-37B4-4F3C-A22F-D6BCE118D40E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFBCAC22-37B4-4F3C-A22F-D6BCE118D40E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
