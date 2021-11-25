@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_DRMSLayout.cshtml";
 }
 
+<canvas class='connecting-dots' id="experiment"></canvas>
 <div class="container">
     <div class="container">
         <div class="wrapper">
@@ -26,7 +27,7 @@
                 <label class="required" for="txtleave_time">退勤時間</label> <br>
                 <input type="text" id="att_end_date" class="form-control" name="endtime" placeholder="12:30" required="" /><br>
 
-                <button id="btnSave" onclick="SaveClick();" class="btn btn-lg btn-outline-secondary btn-block" name="Submit" value="submit" type="Submit">
+                <button id="btnSave" class="btn btn-lg btn-outline-secondary btn-block" name="Submit" value="submit" type="Submit">
                     送信
                 </button>
                 <h5 class="text-right pt-5">山本建設株式会社</h5>
@@ -38,22 +39,24 @@
 @section Scripts
 {
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(document).ready(function (e) {
+           
             $("#txtdate").focus();
-            alert(aa);
+
+            $("#btnSave").click(function (e) {
+                e.preventDefault();
+                var obj = {
+                    member_id: "a01",
+                    work_date: $("#txtdate").val(),
+                    project_id: $("#pjname").val(),
+                    Attendance_time: $("#att_start_date").val(),
+                    Leave_time: $("#att_end_date").val(),
+                };
+                var response = CalltoApiController('@Url.Action("DailyReportInsert", "api/DailyReportAPI")', obj);
+               alert(response);
+            })
         });
 
-        function SaveClick() {
-            var obj = {
-                member_id :"a01",
-                work_date: $("#txtdate").val(),
-                project_id: $("#pjname").val(),
-                Attendance_time: $("#att_start_date").val(),
-                Leave_time: $("#att_end_date").val(),
-            };
-            alert(bb);
-            var response = CalltoApiController('@Url.Action("DailyReportInsert", "api/DailyReportAPI")', obj);
-            alert(response);
-
+        
     </script>
 }
