@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+    Layout = "~/Views/Shared/_DRMSLayout.cshtml";
 }
 <canvas class='connecting-dots' id="experiment"></canvas>
 <div class="container">
@@ -30,3 +30,16 @@
         </div>
     </div>
 </div>
+@section Scripts
+{
+<script type='text/javascript'>
+        $(document).ready(function () {
+            $(window).bind("beforeunload", function () {
+                document.cookie = "Admin_Member_ID" + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+                window.Location = '/User/UserLogin';
+               // return confirm("Do you really want to close?");
+            });
+        });
+</script>
+}
+
