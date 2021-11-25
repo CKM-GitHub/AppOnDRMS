@@ -38,7 +38,7 @@ namespace WorkHistory_BL
             cKMDL.UseTran = true;
             workmodel.Sqlprms = new SqlParameter[0];
            
-            return cKMDL.InsertUpdateDeleteData("GetProjectName", ff.GetConnectionWithDefaultPath("AppOnDRMS"), workmodel.Sqlprms);
+            return cKMDL.SelectJson("GetProjectName", ff.GetConnectionWithDefaultPath("AppOnDRMS"), workmodel.Sqlprms);
         }
 
     }

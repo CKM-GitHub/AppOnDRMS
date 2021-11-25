@@ -43,7 +43,7 @@
            
             $("#txtdate").focus();
 
-            //BindProjectType();
+            BindProjectType();
 
             var obj = {
                 member_id: '@Model.member_id',
@@ -57,14 +57,19 @@
             $("#btnSave").click(function (e) {
                 e.preventDefault();
                 var obj = {
-                    member_id: "a01",
+                    member_id: '@Model.member_id',
                     work_date: $("#txtdate").val(),
                     project_id: $("#pjname").val(),
                     Attendance_time: $("#att_start_date").val(),
                     Leave_time: $("#att_end_date").val(),
                 };
                 var response = CalltoApiController('@Url.Action("DailyReportInsert", "api/DailyReportAPI")', obj);
-               alert(response);
+                if (response = true) {
+                    alert("Successful input");
+                }
+                else {
+                    alert("There are unfilled items");
+                }
             })
         });
 
@@ -73,7 +78,6 @@
                 project_name: ''
             };
             BindDropdown('pjname', 'project_id', 'project_name', '@Url.Action("GetProjectName", "api/DailyReportAPI")', obj);
-            alert("aa");
         }
 
         function SetData(data) {
