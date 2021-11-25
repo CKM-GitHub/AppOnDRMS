@@ -9,15 +9,11 @@
     <title>WEB日報管理システム - 山本建設株式会社</title>
 </head>
 <body>
-
-    @RenderBody()
-
     <script src="@Url.Content("~/js/jquery-3.3.1.slim.min.js")"></script>
+    <script src="@Url.Content("~/js/jquery-3.3.1.min.js")"></script>
     <script src="@Url.Content("~/js/popper.min.js")"></script>
     <script src="@Url.Content("~/js/bootstrap.min.js")"></script>
     <script src="@Url.Content("~/js/js.js")"></script>
-
-    @RenderSection("scripts", required: false)
-    @RenderSection("styles", required: false)
+    @RenderBody()
 </body>
 </html>
