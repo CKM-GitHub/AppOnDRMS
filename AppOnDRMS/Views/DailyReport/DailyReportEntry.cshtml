@@ -13,9 +13,8 @@
 
                 <h4 class="form-signin-heading">日報入力</h4>
                 <hr class="colorgraph"><br>
-
-                <h4 class="form-signin-heading">社員名</h4><br><br>
-                @*<label class="required" for="txtmember_name">社員名</label> <br><br>*@
+              
+                <label class="required" for="txtmember_name">社員名</label> <br><br>
                 <label class="required" for="txtdate">日付</label> <br>
                 <input type="date" id="txtdate" class="form-control" name="date" placeholder="2021/11/16" required="" /><br>
 
@@ -43,6 +42,7 @@
         $(document).ready(function (e) {
            
             $("#txtdate").focus();
+            alert("aa");
             BindProjectType();
             $("#btnSave").click(function (e) {
                 e.preventDefault();
@@ -58,12 +58,12 @@
             })
         });
 
-        @*function BindProjectType() {
+        function BindProjectType() {
             var obj = {
-                ProjectTypeCD: ''
+                project_name: ''
             };
-            BindDropdown('pjname', 'ProjectTypeCD','ProjectTypeName','@Url.Action("GetProjectType", "api/ProjectTypeApi")',obj);
-        }*@
+            BindDropdown('pjname', 'project_id','project_name','@Url.Action("GetProjectName", "api/DailyReportAPI")',obj);
+        }
         
     </script>
 }

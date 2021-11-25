@@ -18,5 +18,14 @@ namespace AppOnDRMS.Controllers
             WorkHistoryBL workbl = new WorkHistoryBL();
             return Ok(workbl.DailyReportInsert(workmodel));
         }
+
+        [HttpPost]
+        [ActionName("GetProjectName")]
+        public IHttpActionResult GetProjectName([FromBody]WorkHistoryModel workmodel)
+        {
+            WorkHistoryBL workbl = new WorkHistoryBL();
+
+            return Ok(workbl.GetProjectName(workmodel));
+        }
     }
 }
