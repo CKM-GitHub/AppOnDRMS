@@ -52,10 +52,10 @@ function BindDropdown(ctrl, key, value, url, model) {
         async: false,
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify(model),
-        headers:
-        {
-            Authorization: 'Basic ' + btoa('KTP' + ':' + 'KTP12345!')
-        },
+        //headers:
+        //{
+        //    Authorization: 'Basic ' + btoa('KTP' + ':' + 'KTP12345!')
+        //},
         success: function (data) {
             var items = JSON.parse(data);
             $.each(items, function (i, item) {

@@ -13,9 +13,8 @@
 
                 <h4 class="form-signin-heading">日報入力</h4>
                 <hr class="colorgraph"><br>
-
-                <h4 class="form-signin-heading">社員名</h4><br><br>
-                @*<label class="required" for="txtmember_name">社員名</label> <br><br>*@
+              
+                <label class="required" for="txtmember_name">社員名 :</label><label class="required" for="txtmember_name" id="txtmember_name"></label> <br><br>
                 <label class="required" for="txtdate">日付</label> <br>
                 <input type="date" id="txtdate" class="form-control" name="date" placeholder="2021/11/16" required="" /><br>
 
@@ -43,7 +42,18 @@
         $(document).ready(function (e) {
            
             $("#txtdate").focus();
-            BindProjectType();
+
+            //BindProjectType();
+
+            var obj = {
+                member_id: '@Model.member_id',
+            };
+            var response = CalltoApiController('@Url.Action("Getmember", "api/DailyReportAPI")', obj);
+            var data = JSON.parse(response);
+            if (data.length > 0) {
+                SetData(data)
+            }
+
             $("#btnSave").click(function (e) {
                 e.preventDefault();
                 var obj = {
@@ -58,12 +68,17 @@
             })
         });
 
-        @*function BindProjectType() {
+        function BindProjectType() {
             var obj = {
-                ProjectTypeCD: ''
+                project_name: ''
             };
-            BindDropdown('pjname', 'ProjectTypeCD','ProjectTypeName','@Url.Action("GetProjectType", "api/ProjectTypeApi")',obj);
-        }*@
+            BindDropdown('pjname', 'project_id', 'project_name', '@Url.Action("GetProjectName", "api/DailyReportAPI")', obj);
+            alert("aa");
+        }
+
+        function SetData(data) {
+            $("#txtmember_name").text(data[0].member_name);
+        }
         
     </script>
 }
