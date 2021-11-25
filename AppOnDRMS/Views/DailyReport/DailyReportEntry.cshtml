@@ -15,19 +15,19 @@
 
                 <label class="required" for="txtmember_name">社員名</label> <br>
                 <label class="required" for="txtdate">日付</label> <br>
-                <input type="text" class="form-control" name="date" placeholder="apple" required="" /><br>
+                <input type="date" id="txtdate" class="form-control" name="date" placeholder="2021/11/16" required="" /><br>
 
                 <label class="required" for="txtpj_name">工事名</label> <br>
-                <input type="date" class="form-control" name="date" placeholder="2021/11/16" required="" /><br>
+                <input type="text" id="pjname" class="form-control" name="pjname" placeholder="apple" required="" /><br>
 
                 <label class="required" for="txtatt_time">出勤時間</label> <br>
-                <input type="text" class="form-control" name="date" placeholder="12:30" required="" /><br>
+                <input type="text" id="att_start_date" class="form-control" name="starttime" placeholder="12:30" required="" /><br>
 
                 <label class="required" for="txtleave_time">退勤時間</label> <br>
-                <input type="text" class="form-control" name="date" placeholder="12:30" required="" /><br>
+                <input type="text" id="att_end_date" class="form-control" name="endtime" placeholder="12:30" required="" /><br>
 
-                <button class="btn btn-lg btn-outline-secondary btn-block" name="Submit" value="submit" type="Submit">
-                送信
+                <button id="btnSave" onclick="SaveClick();" class="btn btn-lg btn-outline-secondary btn-block" name="Submit" value="submit" type="Submit">
+                    送信
                 </button>
                 <h5 class="text-right pt-5">山本建設株式会社</h5>
             </form>
@@ -35,3 +35,25 @@
     </div>
 </div>
 
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#txtdate").focus();
+            alert(aa);
+        });
+
+        function SaveClick() {
+            var obj = {
+                member_id :"a01",
+                work_date: $("#txtdate").val(),
+                project_id: $("#pjname").val(),
+                Attendance_time: $("#att_start_date").val(),
+                Leave_time: $("#att_end_date").val(),
+            };
+            alert(bb);
+            var response = CalltoApiController('@Url.Action("DailyReportInsert", "api/DailyReportAPI")', obj);
+            alert(response);
+
+    </script>
+}
