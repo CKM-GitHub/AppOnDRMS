@@ -132,6 +132,7 @@
     <Compile Include="Controllers\ConstructionListController.cs" />
     <Compile Include="Controllers\DailyReportAPIController.cs" />
     <Compile Include="Controllers\DailyReportController.cs" />
+    <Compile Include="Controllers\EmployeeListController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -188,6 +189,7 @@
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
     <Content Include="Views\User\Management.cshtml" />
     <Content Include="Views\ConstructionList\ConstructionList.cshtml" />
+    <Content Include="Views\EmployeeList\EmployeeList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DRMS_Models\DRMS_Models.csproj">
