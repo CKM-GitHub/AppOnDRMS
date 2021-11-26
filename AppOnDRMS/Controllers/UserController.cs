@@ -16,6 +16,11 @@ namespace AppOnDRMS.Controllers
         // GET: User
         public ActionResult UserLogin() 
         {
+            string[] myCookies = Request.Cookies.AllKeys;
+            foreach (string cookie in myCookies)
+            {
+                Response.Cookies[cookie].Expires = DateTime.Now.AddDays(-1);
+            }
             UserBL user_bl = new UserBL();
             CompanyModel com_Model = user_bl.GetCompanyName();
             UserLoginModel login_Model = new UserLoginModel();

@@ -6,10 +6,10 @@ using System.Web.Mvc;
 
 namespace AppOnDRMS.Controllers
 {
-    public class ConstructionListController : Controller
+    public class EmployeeListController : Controller
     {
-        // GET: ConstructionList
-        public ActionResult ConstructionList()
+        // GET: EmployeeList
+        public ActionResult EmployeeList()
         {
             HttpCookie cookie = HttpContext.Request.Cookies.Get("Admin_Member_ID");
             if (cookie != null)

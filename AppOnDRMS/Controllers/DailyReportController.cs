@@ -13,9 +13,13 @@ namespace AppOnDRMS.Controllers
         public ActionResult DailyReportEntry(UserLoginModel ulmodel)
         {
             HttpCookie cookie = HttpContext.Request.Cookies.Get("Other_Member_ID");
-            ulmodel.member_id = cookie.Value;
-            //string memeber_Id = cookie.Value;
-            return View(ulmodel);
+            if (cookie != null)
+            {
+                ulmodel.member_id = cookie.Value;
+                return View(ulmodel);
+            }
+            else
+                return RedirectToAction("UserLogin", "User");
         }
     }
 }
