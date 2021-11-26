@@ -25,7 +25,7 @@ namespace AppOnDRMS.Controllers
         public IHttpActionResult GetProjectName([FromBody]WorkHistoryModel workmodel)
         {
             WorkHistoryBL workbl = new WorkHistoryBL();
-
+            //string aa = workbl.GetProjectName(workmodel);
             return Ok(workbl.GetProjectName(workmodel));
         }
 
