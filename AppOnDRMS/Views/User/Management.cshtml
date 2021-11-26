@@ -13,17 +13,17 @@
 
                 <div class="row">
                     <div class="col-4">
-                        <button type="button" class="btn btn-outline-success btn-lg btn-block">工事別明細出力</button>
+                        <button type="button" id="btn_ConstructionList" class="btn btn-outline-success btn-lg btn-block">工事別明細出力</button>
                     </div>
                     <div class="col-4">
-                        <button type="button" class="btn btn-outline-danger btn-lg btn-block">社員別明細出力</button>
+                        <button type="button" id="btn_ShainList" class="btn btn-outline-danger btn-lg btn-block">社員別明細出力</button>
                     </div>
                     <div class="col-4">
                         <button type="button" class="btn btn-outline-warning btn-lg btn-block">各マスタ・設定</button>
                     </div>
                 </div>
                 <div class="pt-5 text-right">
-                    <button type="button" class="btn btn-outline-secondary btn">終了 EXIT</button>
+                    <button type="button" id="btn_Exit" class="btn btn-outline-secondary btn">終了 EXIT</button>
                 </div>
                 <h5 class="text-right pt-4">山本建設株式会社</h5>
             </form>
@@ -33,13 +33,28 @@
 @section Scripts
 {
 <script type='text/javascript'>
-        $(document).ready(function () {
+    $(document).ready(function () {
+        let bl_Check = "false";
+        $('#btn_ConstructionList').click(function () {
+            bl_Check = "true";
+            window.location.href = '/ConstructionList/ConstructionList';           
+        })
+        $('#btn_ShainList').click(function () {
+            bl_Check = "true";
+            window.location.href = '/EmployeeList/EmployeeList';
+        })
+        $('#btn_Exit').click(function () {
+            window.location.href = '/User/UserLogin';
+        })
             $(window).bind("beforeunload", function () {
-                document.cookie = "Admin_Member_ID" + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-                window.Location = '/User/UserLogin';
+                if (bl_Check != "true")
+                delete_cookie("Admin_Member_ID");
                // return confirm("Do you really want to close?");
             });
-        });
+    });
+    function delete_cookie(name) {
+        document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    }
 </script>
 }
 
