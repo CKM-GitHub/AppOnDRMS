@@ -41,7 +41,7 @@
         $(document).ready(function (e) {
             debugger;
             window.rdovalue = '';
-            var response = CalltoApiController('@Url.Action("GetPrjData", "api/ConstructionListAPI")');
+            var response = CalltoApiController('@Url.Action("GetPrjData", "api/ConstructionListAPI")', null);
             BindData(JSON.parse(response));
 
             $('#btn').click(function () {
@@ -56,7 +56,7 @@
 
         function BindData(data) {
             for (var i = 0; i < data.length; i++) {
-                $('#tblConstruction > tbody:last-child').append('<tr><td><input type="radio" class="' + i + '" name="name_select_one" id="' + data[i].member_id + '" value="' + data[i].member_id + '" onchange="rdoChange("' + data[i].member_id + '")" />   ' + data[i].member_name + '</td></tr>');
+                $('#tblConstruction > tbody:last-child').append('<tr><td><input type="radio" class="' + i + '" name="name_select_one" id="' + data[i].project_id + '" value="' + data[i].project_id + '" onchange="rdoChange("' + data[i].project_id + '")" />   ' + data[i].project_name + '</td></tr>');
             }
             $('.0').focus(); $('.0').attr("tabindex", 1);
         }

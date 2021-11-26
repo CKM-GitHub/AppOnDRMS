@@ -11,7 +11,7 @@ namespace AppOnDRMS.Controllers
     public class ConstructionListAPIController : ApiController
     {
         [HttpPost]
-        [ActionName("EmployeeList")]
+        [ActionName("GetPrjData")]
         public IHttpActionResult GetPrjData()
         {
             ConstructionListBL constructionBL = new ConstructionListBL();
