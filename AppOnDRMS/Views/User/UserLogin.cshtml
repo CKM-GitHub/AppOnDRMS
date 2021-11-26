@@ -17,7 +17,6 @@
                        @class = "form-control",
                        @type= "password",
                        @tabindex = "1",
-                       @required = "required",
                        @id = "txt_Member_ID",
                        @name = "txt_Member_ID",
                        @placeholder = "社員番号",
@@ -36,3 +35,26 @@
         </div>
     </div>
 </div>
+@section Scripts
+{
+    <script type='text/javascript'>
+    $(document).ready(function () {
+        if ('@ViewBag.NotExistUser' == "True") {
+            alert("入力内容を確認してください")
+            $("#txt_Member_ID").val("");
+        }
+        $(".form-signin").submit(function (e) {
+            
+            if ($("#txt_Member_ID").val() == "") {
+                alert("入力内容を確認してください");
+                $("#txt_Member_ID").focus();
+                e.preventDefault();
+                return false;
+            }
+        });
+    });
+    </script>
+}
+
+
+
