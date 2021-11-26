@@ -13,77 +13,25 @@
                 <h4 class="form-signin-heading">社員一覧</h4>
                 <hr class="colorgraph"><br>
 
-                <table class="table table-hover table-striped header-fixed">
-
+                <table class="table table-hover table-striped header-fixed" id="staff_Table">
                     <tbody>
-                        <tr>
-
-                            <td>山本 太郎</td>
-                        </tr>
-                        <tr>
-                            <td>山本 次郎</td>
-                        </tr>
-                        <tr>
-                            <td>山本 三郎</td>
-                        </tr>
-
-                        <tr>
-                            <td>山本 四郎</td>
-                        </tr>
-                    <td>山本 五郎</td>
-                    </tr>
-                    <tr>
-                        <td>山本 六郎</td>
-                    </tr>
-                    <tr>
-                        <td>山本 七郎</td>
-                    </tr>
-
-                    <tr>
-                        <td>山本 八郎</td>
-                    </tr>
-                    <td>山本 九郎</td>
-                    </tr>
-                    <tr>
-                        <td>山本 十郎</td>
-                    </tr>
-                    <tr>
-                        <td>山本 十一郎</td>
-                    </tr>
-
-                    <tr>
-                        <td>山本 十二郎</td>
-                    </tr>
-
-
-                    <td>山本 十三郎</td>
-                    </tr>
-                    <tr>
-                        <td>山本 十四郎</td>
-                    </tr>
-                    <tr>
-                        <td>山本 十五郎</td>
-                    </tr>
-
-                    <tr>
-                        <td>山本 十六郎</td>
-                    </tr>
                     </tbody>
                 </table>
                 <div class="form-group pt-3">
                     <label for="x">出力期間</label>
                     <div class="datechoices input-daterange input-group">
 
-                        <input class="form-control" type="date" value="　">
+                        <input class="form-control" type="date" id="txt_startDate" value="　" tabindex="2">
                         <div class="input-group-addon">～</div>
-
-                        <input class="form-control" type="date" value="　">
+                        
+                        <input class="form-control" type="date" id="txt_endDate" value="　" tabindex="3">
                     </div>
 
                     <div class="pt-2 text-center">
-                        <button type="button" class="btn btn-outline-secondary btn">社員別明細出力</button>
+                        <button type="button" id="btn_Staff" class="btn btn-outline-secondary btn" tabindex="4">社員別明細出力</button>
                     </div>
-                    <h5 class="text-right pt-4">山本建設株式会社</h5>
+                    <h5 class="text-right pt-4">@ViewBag.CompanyName</h5>
+                </div>
             </form>
         </div>
     </div>
@@ -92,14 +40,44 @@
 @section Scripts
 {
     <script type='text/javascript'>
-    $(document).ready(function () {
-            $(window).bind("beforeunload", function () {
-                delete_cookie("Admin_Member_ID");
-               // return confirm("Do you really want to close?");
+        $(document).ready(function () {
+            //select M_Staff Table list 
+            var response = CalltoApiController('@Url.Action("EmployeeList", "api/EmployeeListApi")', null);
+            var data = JSON.parse(response);
+            if (data.length > 0) {
+                SetData(data)
+            }
+
+            //get value for radio button 
+            var radios = $("input[type=radio]");
+            var radio_value = "";
+            radios.change(function () {
+                radio_value = $(this).val();
             });
-    });
+
+            //$(window).bind("beforeunload", function () {
+            //    delete_cookie("Admin_Member_ID");
+            //   // return confirm("Do you really want to close?");
+            //});
+            $('#btn_Staff').click(function () {
+                if ($("#txt_startDate").val() == "" || $("#txt_endDate").val() == "" || radio_value == "") {
+                    alert("入力内容を確認してください")
+                }
+                else {
+
+                }
+            })
+        });
+
+        function SetData(data) {
+            for (var i = 0; i < data.length; i++) {
+                $('#staff_Table > tbody:last-child').append('<tr><td><input type="radio" class="' + i + '" name="name_select_one" id="' + data[i].member_id + '" value="' + data[i].member_id + '"  />   ' + data[i].member_name + '</td></tr>');
+            }
+            $('.0').focus(); $('.0').attr("tabindex", 1);
+        }
     function delete_cookie(name) {
         document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-    }
+        }
+        
     </script>
 }
