@@ -57,9 +57,8 @@
 
             $("#btnSave").click(function (e) {
                 e.preventDefault();
-                alert("aa");
                 if ($("#txtdate").val() == '' || $("#pjname").val() == '' || $("#att_start_date").val() == '' || $("#att_end_date").val() == '') {
-                    alert("There are unfilled items");
+                    alert("未入力項目があります");
                 }
                 else {
                     var obj = {
@@ -71,7 +70,7 @@
                     };
                        var response = CalltoApiController('@Url.Action("DailyReportInsert", "api/DailyReportAPI")', obj);
                     if (response = true) {
-                        alert("Successful input");
+                        alert("入力成功");
                     }
                 }
                 
