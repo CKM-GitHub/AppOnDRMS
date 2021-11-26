@@ -11,7 +11,7 @@ namespace ConstructionList_BL
     public class ConstructionListBL
     {
         CKMDL dl = new CKMDL();
-        FileFunction ff;
+        FileFunction ff = new FileFunction();
         public string GetPrjData()
         {
             return dl.SelectJson("GetProjectName", ff.GetConnectionWithDefaultPath("AppOnDRMS"));
