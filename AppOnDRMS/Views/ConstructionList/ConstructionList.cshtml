@@ -14,46 +14,19 @@
                 <h4 class="form-signin-heading">工事一覧</h4>
                 <hr class="colorgraph"><br>
 
-                <table class="table table-hover table-striped header-fixed">
+                <table id="tblConstruction" class="table table-hover table-striped header-fixed">
                     <tbody>
-                        <tr>
-                            <td>旭川高架橋改良工事</td>
-                        </tr>
-                        <tr>
-                            <td>富良野用水路拡幅工事</td>
-                        </tr>
-                        <tr>
-                            <td>駅前新聞社ビル解体工事</td>
-                        </tr>
-                        <tr>
-                            <td>レジデンスマンション新築工事</td>
-                        </tr>
-                        <tr>
-                            <td>富良野バイパス改良工事</td>
-                        </tr>
-                        <tr>
-                            <td>十勝マンション解体工事</td>
-                        </tr>
-                        <tr>
-                            <td>札幌道路工事</td>
-                        </tr>
-
-                        <tr>
-                            <td>レジデンスマンション新築工事</td>
-                        </tr>
                     </tbody>
                 </table>
                 <div class="form-group pt-3">
                     <label for="x">出力期間</label>
                     <div class="datechoices input-daterange input-group">
-
-                        <input class="form-control" type="date" value="　">
+                        <input class="form-control" id="txtstartDate" type="date" value="　">
                         <div class="input-group-addon">～</div>
-
-                        <input class="form-control" type="date" value="　">
+                        <input class="form-control" id="txtendDate" type="date" value="　">
                     </div>
                     <div class="pt-2 text-center">
-                        <button type="button" class="btn btn-outline-secondary btn">工事別明細出力</button>
+                        <button type="button" id="btn" class="btn btn-outline-secondary btn">工事別明細出力</button>
                     </div>
                     <h5 class="text-right pt-4">山本建設株式会社</h5>
                 </div>
@@ -66,7 +39,30 @@
 {
     <script type="text/javascript">
         $(document).ready(function (e) {
-            //var response = CalltoApiController('@Url.Action("GetPrjData", "api/ConstructionListAPI")');
+            debugger;
+            window.rdovalue = '';
+            var response = CalltoApiController('@Url.Action("GetPrjData", "api/ConstructionListAPI")');
+            BindData(JSON.parse(response));
+
+            $('#btn').click(function () {
+                if ($("#txtstartDate").val() == "" || $("#txtendDate").val() == "" || window.rdovalue == "") {
+                    alert("入力内容を確認してください");
+                }
+                else {
+
+                }
+            })
         });
+
+        function BindData(data) {
+            for (var i = 0; i < data.length; i++) {
+                $('#tblConstruction > tbody:last-child').append('<tr><td><input type="radio" class="' + i + '" name="name_select_one" id="' + data[i].member_id + '" value="' + data[i].member_id + '" onchange="rdoChange("' + data[i].member_id + '")" />   ' + data[i].member_name + '</td></tr>');
+            }
+            $('.0').focus(); $('.0').attr("tabindex", 1);
+        }
+
+        function rdoChange(id) {
+            window.rdovalue = id;
+        }
     </script>
 }

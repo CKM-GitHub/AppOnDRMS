@@ -193,6 +193,10 @@
     <Content Include="Views\EmployeeList\EmployeeList.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ConstructionList_BL\ConstructionList_BL.csproj">
+      <Project>{afbcac22-37b4-4f3c-a22f-d6bce118d40e}</Project>
+      <Name>ConstructionList_BL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DRMS_Models\DRMS_Models.csproj">
       <Project>{09f5b279-fa5c-40bb-b0b6-2765982cf82d}</Project>
       <Name>DRMS_Models</Name>
