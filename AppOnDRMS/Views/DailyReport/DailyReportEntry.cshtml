@@ -57,28 +57,23 @@
 
             $("#btnSave").click(function (e) {
                 e.preventDefault();
-                var obj = {
+                alert("aa");
+                if ($("#txtdate").val() == '' || $("#pjname").val() == '' || $("#att_start_date").val() == '' || $("#att_end_date").val() == '') {
+                    alert("There are unfilled items");
+                }
+                else {
+                    var obj = {
                     member_id: '@Model.member_id',
                     work_date: $("#txtdate").val(),
                     project_id: $("#pjname").val(),
                     Attendance_time: $("#att_start_date").val(),
                     Leave_time: $("#att_end_date").val(),
-                };
-
-                 var response = CalltoApiController('@Url.Action("DailyReportInsert", "api/DailyReportAPI")', obj);
+                    };
+                       var response = CalltoApiController('@Url.Action("DailyReportInsert", "api/DailyReportAPI")', obj);
                     if (response = true) {
                         alert("Successful input");
                     }
-                    else {
-                        alert("There are unfilled items");
-                    }
-
-                //if (obj = "") {
-                //    alert("There are unfilled items");
-                //}
-                //else {
-                   
-                //}
+                }
                 
             })
         });
