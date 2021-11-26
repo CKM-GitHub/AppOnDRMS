@@ -132,6 +132,7 @@
     <Compile Include="Controllers\ConstructionListController.cs" />
     <Compile Include="Controllers\DailyReportAPIController.cs" />
     <Compile Include="Controllers\DailyReportController.cs" />
+    <Compile Include="Controllers\EmployeeListApiController.cs" />
     <Compile Include="Controllers\EmployeeListController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />

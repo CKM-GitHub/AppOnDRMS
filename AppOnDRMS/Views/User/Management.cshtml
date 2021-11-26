@@ -46,11 +46,10 @@
         $('#btn_Exit').click(function () {
             window.location.href = '/User/UserLogin';
         })
-            $(window).bind("beforeunload", function () {
-                if (bl_Check != "true")
+        $(window).bind("beforeunload", function () {
+            if (bl_Check != "true") {
                 delete_cookie("Admin_Member_ID");
-               // return confirm("Do you really want to close?");
-            });
+            }});
     });
     function delete_cookie(name) {
         document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';

@@ -33,5 +33,9 @@ namespace User_BL
             com_Model.company_name = dt_companyName.Rows[0]["company_name"].ToString();
             return com_Model;
         }
+        public string GetStaff()
+        {
+            return cKMDL.SelectJson("Select_Staff", ff.GetConnectionWithDefaultPath("AppOnDRMS"));
+        }
     }
 }
