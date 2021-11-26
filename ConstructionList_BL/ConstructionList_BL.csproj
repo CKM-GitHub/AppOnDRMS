@@ -31,6 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CKM_CommonFunction">
+      <HintPath>..\AppOnDRMS\RequireDLL\CKM_CommonFunction.dll</HintPath>
+    </Reference>
+    <Reference Include="CKM_DataLayer">
+      <HintPath>..\AppOnDRMS\RequireDLL\CKM_DataLayer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />

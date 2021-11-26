@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DRMS_Models
 {
-    class ConstructionListModel
+    public class ConstructionListModel
     {
     }
 }

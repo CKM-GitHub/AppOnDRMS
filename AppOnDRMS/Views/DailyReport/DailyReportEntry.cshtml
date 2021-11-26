@@ -31,7 +31,7 @@
                 <button id="btnSave" class="btn btn-lg btn-outline-secondary btn-block" name="Submit" value="submit" type="Submit">
                     送信
                 </button>
-                <h5 class="text-right pt-5">山本建設株式会社</h5>
+                <h5 class="text-right pt-5">@Model.company_name</h5>
             </form>
         </div>
     </div>
@@ -57,9 +57,8 @@
 
             $("#btnSave").click(function (e) {
                 e.preventDefault();
-                alert("aa");
                 if ($("#txtdate").val() == '' || $("#pjname").val() == '' || $("#att_start_date").val() == '' || $("#att_end_date").val() == '') {
-                    alert("There are unfilled items");
+                    alert("未入力項目があります");
                 }
                 else {
                     var obj = {
@@ -71,11 +70,17 @@
                     };
                        var response = CalltoApiController('@Url.Action("DailyReportInsert", "api/DailyReportAPI")', obj);
                     if (response = true) {
-                        alert("Successful input");
+                        alert("入力成功");
                     }
                 }
                 
             })
+
+            $(window).bind("beforeunload", function () {
+                if (bl_Check != "true") {
+                    delete_cookie("Other_Member_ID");
+                }
+            });
         });
 
         function BindProjectType() {
@@ -87,6 +92,10 @@
 
         function SetData(data) {
             $("#txtmember_name").text(data[0].member_name);
+        }
+
+        function delete_cookie(name) {
+            document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
         }
         
     </script>
