@@ -6,7 +6,7 @@
 
 <style type="text/css">
     table.table tr.selected {
-        background-color: #999999 !important;
+        background-color: #0e0beb !important;
         color: #fff;
         font-size: large;
     }
@@ -38,9 +38,9 @@
                         <input class="form-control" id="txtendDate" type="date" value="　">
                     </div>
                     <div class="pt-2 text-center">
-                        <button type="button" id="btn" class="btn btn-outline-secondary btn">工事別明細出力</button>
+                        <button type="button" id="btn" class="btn btn-outline-secondary btn" data-pdfdata-url='@Url.Action("GetPDFData", "api/ConstructionListAPI")'>工事別明細出力</button>
                     </div>
-                    <h5 class="text-right pt-4">山本建設株式会社</h5>
+                    <h5 id="companyname" class="text-right pt-4"></h5>
                 </div>
             </form>
         </div>
@@ -49,16 +49,16 @@
 
 @*PDF PAGE STYLE*@
 <div id="PrintDiv" class="container">
-    <table>
+    <table id="tblPDF">
         <tbody>
         </tbody>
     </table>
 </div>
 
-<script src="@Url.Content("~/js/ConstructionList.js")"></script>
-
 @section Scripts
 {
+    <script src="@Url.Content("~/js/ConstructionList.js")"></script>
+
     <script type="text/javascript">
         $(document).ready(function (e) {
             window.rdovalue = '';

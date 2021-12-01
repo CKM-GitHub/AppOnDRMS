@@ -4,8 +4,12 @@
         if (i == 0)
             window.rdovalue = data[i].project_id;
     }
-    $('tbody tr:first-child').addClass("selected");
-    $('tbody tr:first-child').focus();
+
+    if (data.length > 0) {
+        $('#companyname').html(data[0].company_name);
+        $('tbody tr:first-child').addClass("selected");
+        $('tbody tr:first-child').focus();
+    }
 
     $('#txtstartDate').attr("tabindex", data.length + 1);
     $('#txtendDate').attr("tabindex", data.length + 2);
@@ -22,5 +26,10 @@ function btnClick() {
 }
 
 function BindPDFData() {
-
+    var obj = {
+        prjCD: window.rdovalue,
+        startDate: $('#txtstartDate').val(),
+        endDate: $('#txtendDate').val()
+    }
+    var response = CalltoApiController($('#btn').data('pdfdata-url'), obj);
 }

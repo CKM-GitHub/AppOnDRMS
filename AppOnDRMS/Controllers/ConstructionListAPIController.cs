@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using ConstructionList_BL;
+using DRMS_Models;
 
 namespace AppOnDRMS.Controllers
 {
@@ -16,6 +17,14 @@ namespace AppOnDRMS.Controllers
         {
             ConstructionListBL constructionBL = new ConstructionListBL();
             return Ok(constructionBL.GetPrjData());
+        }
+
+        [HttpPost]
+        [ActionName("GetPDFData")]
+        public IHttpActionResult GetPDFData(ConstructionListModel clmodel)
+        {
+            ConstructionListBL constructionBL = new ConstructionListBL();
+            return Ok(constructionBL.GetPDFData(clmodel));
         }
     }
 }
