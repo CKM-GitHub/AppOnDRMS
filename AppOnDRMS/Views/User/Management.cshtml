@@ -1,4 +1,5 @@
-﻿@{
+﻿@model DRMS_Models.UserLoginModel
+@{
     Layout = "~/Views/Shared/_DRMSLayout.cshtml";
 }
 <canvas class='connecting-dots' id="experiment"></canvas>
@@ -25,35 +26,47 @@
                 <div class="pt-5 text-right">
                     <button type="button" id="btn_Exit" class="btn btn-outline-secondary btn">終了 EXIT</button>
                 </div>
-                <h5 class="text-right pt-4">山本建設株式会社</h5>
+                <h5 class="text-right pt-4">@Model.company_name</h5>
             </form>
         </div>
     </div>
 </div>
 @section Scripts
 {
-<script type='text/javascript'>
-    $(document).ready(function () {
-        let bl_Check = "false";
-        $('#btn_ConstructionList').click(function () {
-            bl_Check = "true";
-            window.location.href = '/ConstructionList/ConstructionList';           
-        })
-        $('#btn_ShainList').click(function () {
-            bl_Check = "true";
-            window.location.href = '/EmployeeList/EmployeeList';
-        })
-        $('#btn_Exit').click(function () {
-            window.location.href = '/User/UserLogin';
-        })
-        $(window).bind("beforeunload", function () {
-            if (bl_Check != "true") {
-                delete_cookie("Admin_Member_ID");
-            }});
-    });
-    function delete_cookie(name) {
-        document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-    }
-</script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script type='text/javascript'>
+        $(document).ready(function () {
+            let bl_Check = "false";
+
+            $('#btn_ConstructionList').click(function () {
+                bl_Check = "true";
+                window.location.href = '/ConstructionList/ConstructionList';
+            })
+            $('#btn_ShainList').click(function () {
+                bl_Check = "true";
+                window.location.href = '/EmployeeList/EmployeeList';
+            })
+            $('#btn_Exit').click(function () {
+                window.location.href = '/User/UserLogin';
+            })
+            $(window).bind("beforeunload", function (e) {
+                if (bl_Check != "true") {
+                    delete_cookie("Admin_Member_ID");
+                }
+                // return confirm("Do you really want to close?");
+            });
+
+            //$(window).bind("unload", function () {
+            //    if (bl_Check != "true") {
+            //        delete_cookie("Admin_Member_ID");
+            //    }
+            //});
+        });
+        function delete_cookie(name) {
+            document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        }
+
+
+    </script>
 }
 

@@ -22,10 +22,7 @@ namespace AppOnDRMS.Controllers
             {
                 Response.Cookies[cookie].Expires = DateTime.Now.AddDays(-1);
             }
-            CompanyModel com_Model = user_bl.GetCompanyName();
-            UserLoginModel login_Model = new UserLoginModel();
-            login_Model.member_id = string.Empty;
-            login_Model.company_name = com_Model.company_name;            
+            UserLoginModel login_Model = GetUserLoginModel();
             return View(login_Model);
         }
         [HttpPost]
@@ -48,22 +45,30 @@ namespace AppOnDRMS.Controllers
                 }
                 else
                 {
-                    CompanyModel com_Model = user_bl.GetCompanyName();
-                    UserLoginModel login_Model = new UserLoginModel();
-                    login_Model.company_name = com_Model.company_name;
-                    login_Model.member_id = string.Empty;
+                    UserLoginModel login_Model = GetUserLoginModel();
                     ViewBag.NotExistUser = "True";
                     return View(login_Model);
                 }
             } 
         }
-        public ActionResult Management(string id)
+        public ActionResult Management()
         {
             HttpCookie cookie = HttpContext.Request.Cookies.Get("Admin_Member_ID");
             if(cookie != null)
-                return View();
+            {
+                UserLoginModel login_Model = GetUserLoginModel();
+                return View(login_Model);
+            }
             else
                 return RedirectToAction("UserLogin", "User");
+        }
+        public UserLoginModel GetUserLoginModel()
+        {
+            CompanyModel com_Model = user_bl.GetCompanyName();
+            UserLoginModel login_Model = new UserLoginModel();
+            login_Model.company_name = com_Model.company_name;
+            login_Model.member_id = string.Empty;
+            return login_Model;
         }
     }
 }
