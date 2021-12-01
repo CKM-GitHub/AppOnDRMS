@@ -40,14 +40,14 @@
 
             $('#btn_ConstructionList').click(function () {
                 bl_Check = "true";
-                window.location.href = '/ConstructionList/ConstructionList';
+                window.location.href = '@Url.Action("ConstructionList", "ConstructionList")';
             })
             $('#btn_ShainList').click(function () {
                 bl_Check = "true";
-                window.location.href = '/EmployeeList/EmployeeList';
+                window.location.href = '@Url.Action("EmployeeList", "EmployeeList")';
             })
             $('#btn_Exit').click(function () {
-                window.location.href = '/User/UserLogin';
+                window.location.href =  '@Url.Action("UserLogin", "User")';
             })
             $(window).bind("beforeunload", function (e) {
                 if (bl_Check != "true") {
