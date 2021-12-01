@@ -44,8 +44,10 @@
            
             $("#txtdate").focus();
 
+            //bind project name 
             BindProjectType();
 
+            //data accept from cookie
             var obj = {
                 member_id: '@Model.member_id',
             };
@@ -55,8 +57,10 @@
                 SetData(data)
             }
 
+            //btnSave event
             $("#btnSave").click(function (e) {
                 e.preventDefault();
+                //Errorcheck
                 if ($("#txtdate").val() == '' || $("#pjname").val() == '' || $("#att_start_date").val() == '' || $("#att_end_date").val() == '') {
                     alert("未入力項目があります");
                 }
@@ -69,6 +73,7 @@
                     Leave_time: $("#att_end_date").val(),
                     };
 
+                    //duplicate error check
                     var resp = CalltoApiController('@Url.Action("GetWorkHistory", "api/DailyReportAPI")', obj);
                     var data = JSON.parse(resp);
                     if (data.length > 0) {
@@ -76,6 +81,7 @@
                         $("#txtdate").focus();
                     }
                     else {
+                        //insert data into table
                         var response = CalltoApiController('@Url.Action("DailyReportInsert", "api/DailyReportAPI")', obj);
                         if (response = true) {
                             alert("入力成功");
@@ -96,6 +102,7 @@
             });
         });
 
+        // clear
         function Clear() {
             $("#txtdate").val('');
             $('#pjname').val('01');
