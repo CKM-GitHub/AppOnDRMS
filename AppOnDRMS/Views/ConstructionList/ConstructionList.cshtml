@@ -4,6 +4,18 @@
     Layout = "~/Views/Shared/_DRMSLayout.cshtml";
 }
 
+<style type="text/css">
+    table.table tr.selected {
+        background-color: #999999 !important;
+        color: #fff;
+        font-size: large;
+    }
+
+    .prjid {
+        display: none;
+    }
+</style>
+
 <canvas class='connecting-dots' id="experiment"></canvas>
 <div class="container">
     <div class="container">
@@ -14,7 +26,7 @@
                 <h4 class="form-signin-heading">工事一覧</h4>
                 <hr class="colorgraph"><br>
 
-                <table id="tblConstruction" class="table table-hover table-striped header-fixed">
+                <table id="tblConstruction" tabindex="0" class="table table-hover table-striped header-fixed">
                     <tbody>
                     </tbody>
                 </table>
@@ -44,6 +56,18 @@
             var response = CalltoApiController('@Url.Action("GetPrjData", "api/ConstructionListAPI")', null);
             BindData(JSON.parse(response));
 
+            $("tbody tr").click(function () {
+                $('.selected').removeClass('selected');
+                $(this).addClass("selected");
+                window.rdovalue = $('.prjid', this).html();
+            });
+
+            $("tbody tr").on("focusin", function () {
+                $('.selected').removeClass('selected');
+                $(this).addClass("selected");
+                window.rdovalue = $('.prjid', this).html();
+            });
+
             $('#btn').click(function () {
                 if ($("#txtstartDate").val() == "" || $("#txtendDate").val() == "" || window.rdovalue == "") {
                     alert("入力内容を確認してください");
@@ -56,13 +80,16 @@
 
         function BindData(data) {
             for (var i = 0; i < data.length; i++) {
-                $('#tblConstruction > tbody:last-child').append('<tr><td><input type="radio" class="' + i + '" name="name_select_one" id="' + data[i].project_id + '" value="' + data[i].project_id + '" onchange="rdoChange("' + data[i].project_id + '")" />   ' + data[i].project_name + '</td></tr>');
+                $('#tblConstruction > tbody:last-child').append('<tr tabindex="' + (i + 1) + '"><td><span class="prjid">' + data[i].project_id + '</span>' + data[i].project_name + '</td></tr>');
+                if (i == 0)
+                    window.rdovalue = data[i].project_id;
             }
-            $('.0').focus(); $('.0').attr("tabindex", 1);
-        }
+            $('tbody tr:first-child').addClass("selected");
+            $('tbody tr:first-child').focus();
 
-        function rdoChange(id) {
-            window.rdovalue = id;
+            $('#txtstartDate').attr("tabindex", data.length + 1);
+            $('#txtendDate').attr("tabindex", data.length + 2);
+            $('#btn').attr("tabindex", data.length + 3);
         }
     </script>
 }
