@@ -55,16 +55,16 @@
                 radio_value = $(this).val();
             });
 
-            //$(window).bind("beforeunload", function () {
-            //    delete_cookie("Admin_Member_ID");
-            //   // return confirm("Do you really want to close?");
-            //});
+            $(window).bind("beforeunload", function () {
+                delete_cookie("Admin_Member_ID");
+               // return confirm("Do you really want to close?");
+            });
             $('#btn_Staff').click(function () {
                 if ($("#txt_startDate").val() == "" || $("#txt_endDate").val() == "" || radio_value == "") {
                     alert("入力内容を確認してください")
                 }
                 else {
-
+                    //print pdf
                 }
             })
         });
