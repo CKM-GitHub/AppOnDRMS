@@ -47,11 +47,20 @@
     </div>
 </div>
 
+@*PDF PAGE STYLE*@
+<div id="PrintDiv" class="container">
+    <table>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+<script src="@Url.Content("~/js/ConstructionList.js")"></script>
+
 @section Scripts
 {
     <script type="text/javascript">
         $(document).ready(function (e) {
-            debugger;
             window.rdovalue = '';
             var response = CalltoApiController('@Url.Action("GetPrjData", "api/ConstructionListAPI")', null);
             BindData(JSON.parse(response));
@@ -69,27 +78,8 @@
             });
 
             $('#btn').click(function () {
-                if ($("#txtstartDate").val() == "" || $("#txtendDate").val() == "" || window.rdovalue == "") {
-                    alert("入力内容を確認してください");
-                }
-                else {
-
-                }
-            })
+                btnClick();
+            });
         });
-
-        function BindData(data) {
-            for (var i = 0; i < data.length; i++) {
-                $('#tblConstruction > tbody:last-child').append('<tr tabindex="' + (i + 1) + '"><td><span class="prjid">' + data[i].project_id + '</span>' + data[i].project_name + '</td></tr>');
-                if (i == 0)
-                    window.rdovalue = data[i].project_id;
-            }
-            $('tbody tr:first-child').addClass("selected");
-            $('tbody tr:first-child').focus();
-
-            $('#txtstartDate').attr("tabindex", data.length + 1);
-            $('#txtendDate').attr("tabindex", data.length + 2);
-            $('#btn').attr("tabindex", data.length + 3);
-        }
     </script>
 }
