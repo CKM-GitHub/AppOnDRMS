@@ -49,9 +49,9 @@
 
 @*PDF PAGE STYLE*@
 <div id="PrintDiv" class="container">
-    <table id="tblPDF">
-        <tbody>
-        </tbody>
+    <table id="tblPDF" class="table">
+        <thead></thead>
+        <tbody></tbody>
     </table>
 </div>
 
@@ -61,20 +61,23 @@
 
     <script type="text/javascript">
         $(document).ready(function (e) {
-            window.rdovalue = '';
+            window.prjCD = '';
+            window.prjName = '';
             var response = CalltoApiController('@Url.Action("GetPrjData", "api/ConstructionListAPI")', null);
             BindData(JSON.parse(response));
 
             $("tbody tr").click(function () {
                 $('.selected').removeClass('selected');
                 $(this).addClass("selected");
-                window.rdovalue = $('.prjid', this).html();
+                window.prjCD = $('.prjid', this).html();
+                window.prjName = $('.prjname', this).html();
             });
 
             $("tbody tr").on("focusin", function () {
                 $('.selected').removeClass('selected');
                 $(this).addClass("selected");
-                window.rdovalue = $('.prjid', this).html();
+                window.prjCD = $('.prjid', this).html();
+                window.prjName = $('.prjname', this).html();
             });
 
             $('#btn').click(function () {
