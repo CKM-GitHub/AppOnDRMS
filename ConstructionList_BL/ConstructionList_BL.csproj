@@ -50,5 +50,11 @@
     <Compile Include="ConstructionListBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DRMS_Models\DRMS_Models.csproj">
+      <Project>{09f5b279-fa5c-40bb-b0b6-2765982cf82d}</Project>
+      <Name>DRMS_Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

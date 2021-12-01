@@ -150,6 +150,7 @@
     <Content Include="images\bg.jpg" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\Common.js" />
+    <Content Include="js\ConstructionList.js" />
     <Content Include="js\jquery-3.3.1.min.js" />
     <Content Include="js\jquery-3.3.1.slim.min.js" />
     <Content Include="js\js.js" />

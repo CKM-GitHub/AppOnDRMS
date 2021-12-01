@@ -4,6 +4,18 @@
     Layout = "~/Views/Shared/_DRMSLayout.cshtml";
 }
 
+<style type="text/css">
+    table.table tr.selected {
+        background-color: #0e0beb !important;
+        color: #fff;
+        font-size: large;
+    }
+
+    .prjid {
+        display: none;
+    }
+</style>
+
 <canvas class='connecting-dots' id="experiment"></canvas>
 <div class="container">
     <div class="container">
@@ -14,7 +26,7 @@
                 <h4 class="form-signin-heading">工事一覧</h4>
                 <hr class="colorgraph"><br>
 
-                <table id="tblConstruction" class="table table-hover table-striped header-fixed">
+                <table id="tblConstruction" tabindex="0" class="table table-hover table-striped header-fixed">
                     <tbody>
                     </tbody>
                 </table>
@@ -26,43 +38,48 @@
                         <input class="form-control" id="txtendDate" type="date" value="　">
                     </div>
                     <div class="pt-2 text-center">
-                        <button type="button" id="btn" class="btn btn-outline-secondary btn">工事別明細出力</button>
+                        <button type="button" id="btn" class="btn btn-outline-secondary btn" data-pdfdata-url='@Url.Action("GetPDFData", "api/ConstructionListAPI")'>工事別明細出力</button>
                     </div>
-                    <h5 class="text-right pt-4">山本建設株式会社</h5>
+                    <h5 id="companyname" class="text-right pt-4"></h5>
                 </div>
             </form>
         </div>
     </div>
 </div>
 
+@*PDF PAGE STYLE*@
+<div id="PrintDiv" class="container">
+    <table id="tblPDF">
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
 @section Scripts
 {
+    <script src="@Url.Content("~/js/ConstructionList.js")"></script>
+
     <script type="text/javascript">
         $(document).ready(function (e) {
-            debugger;
             window.rdovalue = '';
             var response = CalltoApiController('@Url.Action("GetPrjData", "api/ConstructionListAPI")', null);
             BindData(JSON.parse(response));
 
+            $("tbody tr").click(function () {
+                $('.selected').removeClass('selected');
+                $(this).addClass("selected");
+                window.rdovalue = $('.prjid', this).html();
+            });
+
+            $("tbody tr").on("focusin", function () {
+                $('.selected').removeClass('selected');
+                $(this).addClass("selected");
+                window.rdovalue = $('.prjid', this).html();
+            });
+
             $('#btn').click(function () {
-                if ($("#txtstartDate").val() == "" || $("#txtendDate").val() == "" || window.rdovalue == "") {
-                    alert("入力内容を確認してください");
-                }
-                else {
-
-                }
-            })
+                btnClick();
+            });
         });
-
-        function BindData(data) {
-            for (var i = 0; i < data.length; i++) {
-                $('#tblConstruction > tbody:last-child').append('<tr><td><input type="radio" class="' + i + '" name="name_select_one" id="' + data[i].project_id + '" value="' + data[i].project_id + '" onchange="rdoChange("' + data[i].project_id + '")" />   ' + data[i].project_name + '</td></tr>');
-            }
-            $('.0').focus(); $('.0').attr("tabindex", 1);
-        }
-
-        function rdoChange(id) {
-            window.rdovalue = id;
-        }
     </script>
 }
