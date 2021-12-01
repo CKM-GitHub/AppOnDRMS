@@ -41,5 +41,14 @@ namespace WorkHistory_BL
             return cKMDL.SelectJson("GetProjectName", ff.GetConnectionWithDefaultPath("AppOnDRMS"), workmodel.Sqlprms);
         }
 
+        public string GetWorkHistory(WorkHistoryModel workmodel)
+        {
+            cKMDL.UseTran = true;
+            workmodel.Sqlprms = new SqlParameter[2];
+            workmodel.Sqlprms[0] = new SqlParameter("@member_id", workmodel.member_id);
+            workmodel.Sqlprms[1] = new SqlParameter("@work_date", workmodel.work_date);
+
+            return cKMDL.SelectJson("GetWorkHistory", ff.GetConnectionWithDefaultPath("AppOnDRMS"), workmodel.Sqlprms);
+        }
     }
 }

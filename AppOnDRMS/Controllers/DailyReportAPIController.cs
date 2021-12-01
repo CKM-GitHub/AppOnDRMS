@@ -37,6 +37,16 @@ namespace AppOnDRMS.Controllers
             //string aa = userbl.GetUser(ulmodel);
             return Ok(userbl.GetUser(ulmodel));
         }
-        
+
+        [HttpPost]
+        [ActionName("GetWorkHistory")]
+        public IHttpActionResult GetWorkHistory([FromBody]WorkHistoryModel workmodel)
+        {
+            WorkHistoryBL workbl = new WorkHistoryBL();
+            //string aa = workbl.GetWorkHistory(workmodel);
+            return Ok(workbl.GetWorkHistory(workmodel));
+            //return Ok();
+        }
+
     }
 }

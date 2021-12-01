@@ -68,10 +68,23 @@
                     Attendance_time: $("#att_start_date").val(),
                     Leave_time: $("#att_end_date").val(),
                     };
-                       var response = CalltoApiController('@Url.Action("DailyReportInsert", "api/DailyReportAPI")', obj);
-                    if (response = true) {
-                        alert("入力成功");
+
+                    var resp = CalltoApiController('@Url.Action("GetWorkHistory", "api/DailyReportAPI")', obj);
+                    var data = JSON.parse(resp);
+                    if (data.length > 0) {
+                        alert("未入力項目があります");
+                        $("#txtdate").focus();
                     }
+                    else {
+                        var response = CalltoApiController('@Url.Action("DailyReportInsert", "api/DailyReportAPI")', obj);
+                        if (response = true) {
+                            alert("入力成功");
+                            Clear();
+                            $("#txtdate").focus();
+                            //BindProjectType();
+                        }
+                    }  
+
                 }
                 
             })
@@ -82,6 +95,14 @@
                 }
             });
         });
+
+        function Clear() {
+            $("#txtdate").val('');
+            $('#pjname').val('01');
+            $("#att_start_date").val('');
+            $("#att_end_date").val('');
+           
+        }
 
         function BindProjectType() {
             var obj = {
