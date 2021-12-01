@@ -28,7 +28,7 @@ namespace AppOnDRMS.Controllers
         [HttpPost]
         public ActionResult UserLogin(UserLoginModel m_Login)
         {
-            if(m_Login.member_id == "admin")
+            if(m_Login.member_id.ToLower().ToString() == "admin")
             {
                 HttpCookie cookie = new HttpCookie("Admin_Member_ID", m_Login.member_id);
                 Response.Cookies.Add(cookie);

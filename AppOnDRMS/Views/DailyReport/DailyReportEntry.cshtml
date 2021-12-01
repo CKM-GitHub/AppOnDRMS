@@ -77,17 +77,16 @@
                     var resp = CalltoApiController('@Url.Action("GetWorkHistory", "api/DailyReportAPI")', obj);
                     var data = JSON.parse(resp);
                     if (data.length > 0) {
-                        alert("未入力項目があります");
+                        alert("入力内容を確認してください");
                         $("#txtdate").focus();
                     }
                     else {
-                        //insert data into table
+                        //insert data into workhistory table
                         var response = CalltoApiController('@Url.Action("DailyReportInsert", "api/DailyReportAPI")', obj);
                         if (response = true) {
                             alert("入力成功");
                             Clear();
                             $("#txtdate").focus();
-                            //BindProjectType();
                         }
                     }  
 
@@ -105,7 +104,7 @@
         // clear
         function Clear() {
             $("#txtdate").val('');
-            $('#pjname').val('01');
+            $('#pjname').val('0001');
             $("#att_start_date").val('');
             $("#att_end_date").val('');
            
