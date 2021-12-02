@@ -37,5 +37,13 @@ namespace User_BL
         {
             return cKMDL.SelectJson("Select_Staff", ff.GetConnectionWithDefaultPath("AppOnDRMS"));
         }
+        public UserLoginModel GetUserLoginModel()
+        {
+            CompanyModel com_Model = GetCompanyName();
+            UserLoginModel login_Model = new UserLoginModel();
+            login_Model.company_name = com_Model.company_name;
+            login_Model.member_id = string.Empty;
+            return login_Model;
+        }
     }
 }

@@ -35,38 +35,56 @@
 {
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <script type='text/javascript'>
-        $(document).ready(function () {
-            let bl_Check = "false";
+            $(document).ready(function () {
+                let bl_Check = "false";
 
-            $('#btn_ConstructionList').click(function () {
-                bl_Check = "true";
-                window.location.href = '@Url.Action("ConstructionList", "ConstructionList")';
-            })
-            $('#btn_ShainList').click(function () {
-                bl_Check = "true";
-                window.location.href = '@Url.Action("EmployeeList", "EmployeeList")';
-            })
-            $('#btn_Exit').click(function () {
-                window.location.href =  '@Url.Action("UserLogin", "User")';
-            })
-            $(window).bind("beforeunload", function (e) {
-                if (bl_Check != "true") {
-                    delete_cookie("Admin_Member_ID");
-                }
-                // return confirm("Do you really want to close?");
+                $('#btn_ConstructionList').click(function () {
+                    bl_Check = "true";
+                    window.location.href = '@Url.Action("ConstructionList", "ConstructionList")';
+                })
+                $('#btn_ShainList').click(function () {
+                    bl_Check = "true";
+                    window.location.href = '@Url.Action("EmployeeList", "EmployeeList")';
+                })
+                $('#btn_Exit').click(function () {
+                    window.location.href =  '@Url.Action("UserLogin", "User")';
+                })
+                //$(document).on('mouseenter', function (e) {
+                //    e.preventDefault();
+                //})
+
+                //$(document).on("keydown", disableF5);
+
+                $(window).bind("beforeunload", function () {
+                    if (bl_Check != "true") {
+                        delete_cookie("Admin_Member_ID");
+                    }
+                });
+
+                //$(window).bind("unload", function (e) {
+                //    if (bl_Check != "true") {
+                //        delete_cookie("Admin_Member_ID");
+                //    }
+                //});
+                //$(window).keydown(function (event) {
+                //    if (event.keyCode == 116) { // User presses F5 to refresh
+                //        event.preventDefault();
+                //    }
+                //});
+
+                //$(window).bind("beforeunload", function (e) {
+                //    return "Are you sure!";
+                //});
             });
-
-            //$(window).bind("unload", function () {
-            //    if (bl_Check != "true") {
-            //        delete_cookie("Admin_Member_ID");
-            //    }
-            //});
-        });
         function delete_cookie(name) {
             document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
         }
+        function disableF5(e) {
 
+            if ((e.which || e.keyCode) == 116 || (e.which || e.keyCode) == 82)
+                e.preventDefault();
+        };
 
-    </script>
-}
+        </script>
+    }
 
