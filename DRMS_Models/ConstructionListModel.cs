@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace DRMS_Models
 {
-    public class ConstructionListModel
+    public class ConstructionListModel: BaseModel
     {
+        public string prjCD { get; set; }
+        public string startDate { get; set; }
+        public string endDate { get; set; }
     }
 }
