@@ -35,18 +35,22 @@ function BindPDFData() {
     }
     var response = CalltoApiController($('#btn').data('pdfdata-url'), obj);
     DataToTable(response);
+    //Convert_HTML_To_PDF('PrintDiv');
 }
 
 function DataToTable(objdata) {
     if (!(objdata == "[]")) {
+        debugger;
         var row = '';
+        var startDate = $('#txtstartDate').val().split('-');
+        var endDate = $('#txtendDate').val().split('-');
         var data = typeof JSONString != 'object' ? JSON.parse(objdata) : JSONString;
         if (data.length > 0) {
             $('#tblPDF thead').append($('<tr>'));
-            $('#tblPDF thead tr:last-child').append($('<th rowspan="2" colspan="2" style="text-align:center;vertical-align:middle;">工事別明細表</th><th colspan="6" class="border-0">工事名 : ' + window.prjName + '</th>'));
+            $('#tblPDF thead tr:last-child').append($('<th rowspan="2" colspan="2" class="border-0" style="text-align:center;vertical-align:middle;">工事別明細表</th><th colspan="6" class="border-0">工事名 : ' + window.prjName + '</th>'));
             $('#tblPDF thead').append($('<tr>'));
-            $('#tblPDF thead tr:last-child').append($('<th colspan="6" class="border-0">' + $('#txtstartDate').val() + '~' + $('#txtendDate').val() + '</th>'));
-            $('#tblPDF thead').append($('<tr>'));
+            $('#tblPDF thead tr:last-child').append($('<th colspan="5" class="border-0">令和 ' + startDate[0] + '年 ' + startDate[1] + '月 ' + startDate[2] + '日～令和 ' + endDate[0] + '年 ' + endDate[1] + '月 ' + endDate[2] + '日</th><th class="border-0 float-right">1ページ</th>'));
+            $('#tblPDF thead').append($('<tr style="text-align:center;vertical-align:middle;">'));
             $('#tblPDF thead tr:last-child').append($('<td>月/日</td><td>社員名</td><td>作業名</td><td colspan="2">就業時間帯</td><td>人工</td><td>時間外</td><td>深夜</td>'));
         }
     }
