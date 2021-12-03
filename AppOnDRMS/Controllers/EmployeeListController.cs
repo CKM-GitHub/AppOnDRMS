@@ -52,81 +52,51 @@ namespace AppOnDRMS.Controllers
                 content.Stroke();
 
                 //Table
-                PdfPTable table = new PdfPTable(2);
-                table.WidthPercentage = 100;
-                //0=Left, 1=Centre, 2=Right
+                PdfPTable table = new PdfPTable(9);
                 table.HorizontalAlignment = 0;
+                table.TotalWidth = 525f;
+                table.LockedWidth = true;
+                float[] widths = new float[] { 75f, 155f, 75f, 30f, 30f, 30f, 50f, 50f, 30f };
+                table.SetWidths(widths);
                 table.SpacingBefore = 20f;
                 table.SpacingAfter = 30f;
 
                 //Cell no 1
                 PdfPCell cell = new PdfPCell();
 
-                //Table
-                table = new PdfPTable(5);
-                table.WidthPercentage = 100;
-                table.HorizontalAlignment = 0;
-                table.SpacingBefore = 20f;
-                table.SpacingAfter = 30f;
-
                 //Cell
-                cell = new PdfPCell(new Phrase("Colspan2-1"));
-                cell.Colspan = 2;
+                cell = new PdfPCell(new Phrase(" 社員名：山本 太郎 "));
+                cell.Colspan = 4;
                 cell.BorderWidthRight = 0;
                 cell.BorderWidthBottom = 0;
                 table.AddCell(cell);
-                cell = new PdfPCell(new Phrase("Colspan2-2"));
-                cell.Colspan = 2;
+                cell = new PdfPCell(new Phrase("《社員別明細表》"));
+                cell.Colspan = 3;
                 cell.BorderWidthRight = 0;
                 cell.BorderWidthLeft = 0;
                 cell.BorderWidthBottom = 0;
                 table.AddCell(cell);
-                cell = new PdfPCell(new Phrase("Colspan1"));
+                cell = new PdfPCell(new Phrase(" 1 ページ "));
+                cell.Colspan = 2;
                 cell.BorderWidthLeft = 0;
                 cell.BorderWidthBottom = 0;
                 cell.MinimumHeight = 35;
                 table.AddCell(cell);
 
-                cell = new PdfPCell(new Phrase("Date Difference"));
-                cell.Colspan = 5;
+                cell = new PdfPCell(new Phrase(" 令和 3 年 10 月 1 日～令和 3 年 10 月 31 日 "));
+                cell.Colspan = 9;
                 cell.BorderWidthTop = 0;
                 table.AddCell(cell);
 
-                table.AddCell("S.No");
-                table.AddCell("NYC Junction");
-                table.AddCell("Item");
-                table.AddCell("Cost");
-                table.AddCell("Date");
-
-                table.AddCell("1");
-                table.AddCell("David Food Store");
-                table.AddCell("Fruits & Vegetables");
-                table.AddCell("$100.00");
-                table.AddCell("June 1");
-
-                table.AddCell("2");
-                table.AddCell("Child Store");
-                table.AddCell("Diaper Pack");
-                table.AddCell("$6.00");
-                table.AddCell("June 9");
-
-                table.AddCell("3");
-                table.AddCell("Punjabi Restaurant");
-                table.AddCell("Dinner");
-                table.AddCell("$29.00");
-                table.AddCell("June 15");
-
-                table.AddCell("4");
-                table.AddCell("Wallmart Albany");
-                table.AddCell("Grocery");
-                table.AddCell("$299.50");
-                table.AddCell("June 25");
-
-                table.AddCell("5");
-                table.AddCell("Singh Drugs");
-                table.AddCell("Back Pain Tablets");
-                table.AddCell("$14.99");
-                table.AddCell("June 28");
+                table.AddCell("月/日");
+                table.AddCell("工事名");
+                table.AddCell("就業時間");
+                table.AddCell("基本");
+                table.AddCell("時外");
+                table.AddCell("深夜");
+                table.AddCell("所定外");
+                table.AddCell("法定休");
+                table.AddCell("休深");
 
                 pdfDoc.Add(table);
 
