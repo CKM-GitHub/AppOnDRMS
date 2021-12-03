@@ -45,5 +45,19 @@ namespace User_BL
             login_Model.member_id = string.Empty;
             return login_Model;
         }
+
+        public string GetPDF(string name)
+        {
+
+            var date = DateTime.Now.ToString("yyyyMMdd");
+            Random r = new Random();
+            int num = r.Next();
+            Random ra = new Random();
+            int num1 = ra.Next(10, 99);
+            string fileName = name +"_" + date + "_" + num + num1 + ".pdf";
+
+            return (fileName);
+        }
     }
 }
+
