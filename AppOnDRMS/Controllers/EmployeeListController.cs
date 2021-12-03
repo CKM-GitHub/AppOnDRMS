@@ -83,7 +83,10 @@ namespace AppOnDRMS.Controllers
                 cell.MinimumHeight = 35;
                 table.AddCell(cell);
 
-                cell = new PdfPCell(new Phrase(" 令和 3 年 10 月 1 日～令和 3 年 10 月 31 日 "));
+                DateTime date1 = new DateTime(2020, 12, 31, 5, 10, 20);
+                string aa = user_bl.GetTextDateJapan(date1);
+
+                cell = new PdfPCell(new Phrase(aa));
                 cell.Colspan = 9;
                 cell.BorderWidthTop = 0;
                 table.AddCell(cell);

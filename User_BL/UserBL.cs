@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using CKM_CommonFunction;
 using CKM_DataLayer;
 using DRMS_Models;
+using System.Globalization;
 
 
 namespace User_BL
@@ -57,6 +58,16 @@ namespace User_BL
             string fileName = name +"_" + date + "_" + num + num1 + ".pdf";
 
             return (fileName);
+        }
+
+        public string GetTextDateJapan(DateTime date)
+        {
+            string result = string.Empty;
+            JapaneseCalendar calendarJp = new System.Globalization.JapaneseCalendar();
+            CultureInfo cultureJp = new System.Globalization.CultureInfo("ja-JP", false);
+            cultureJp.DateTimeFormat.Calendar = calendarJp;
+            result = date.ToString("ggy年MM月dd日", cultureJp);
+            return result;
         }
     }
 }
