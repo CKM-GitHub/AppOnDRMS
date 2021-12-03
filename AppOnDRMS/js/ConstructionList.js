@@ -23,6 +23,13 @@ function btnClick() {
         alert("入力内容を確認してください");
     }
     else {
+        var doc = new jsPDF();
+        var specialElementHandlers = {
+            '#editor': function (element, renderer) {
+                return true;
+            }
+        };
+
         BindPDFData();
     }
 }

@@ -25,7 +25,7 @@ namespace ConstructionList_BL
             clmodel.Sqlprms[0] = new SqlParameter("@prjCD", clmodel.prjCD);
             clmodel.Sqlprms[1] = new SqlParameter("@startDate", clmodel.startDate);
             clmodel.Sqlprms[2] = new SqlParameter("@endDate", clmodel.endDate);
-            return dl.SelectJson("GetPDFData", ff.GetConnectionWithDefaultPath("AppOnDRMS"), clmodel.Sqlprms);
+            return dl.SelectJson("GetProject_PDFData", ff.GetConnectionWithDefaultPath("AppOnDRMS"), clmodel.Sqlprms);
         }
     }
 }
