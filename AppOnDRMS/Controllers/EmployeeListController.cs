@@ -89,6 +89,10 @@ namespace AppOnDRMS.Controllers
                 cell.MinimumHeight = 35;
                 table.AddCell(cell);
 
+                DateTime date1 = new DateTime(2020, 12, 31, 5, 10, 20);
+                string aa = user_bl.GetTextDateJapan(date1);
+
+                cell = new PdfPCell(new Phrase(aa));
                 cell = new PdfPCell(new Phrase(" 令和 3 年 10 月 1 日～令和 3 年 10 月 31 日 ",font));
                 cell.Colspan = 9;
                 cell.BorderWidthTop = 0;
@@ -112,12 +116,9 @@ namespace AppOnDRMS.Controllers
                 byte[] bytes = myMemoryStream.ToArray();
                 // Write out PDF from memory stream.                
                 string FolderName = Server.MapPath("/output/staff/");
-                var date = DateTime.Now.ToString("yyyyMMdd"); 
-                Random r = new Random();
-                int num = r.Next();
-                Random ra = new Random();
-                int num1 = ra.Next(10, 99);
-                string fileName = "staff_"+ date + "_" + num + num1 +".pdf";
+               
+                string name = "staff";
+                string fileName = user_bl.GetPDF(name);
                 using (FileStream fs = new FileStream(Server.MapPath(Path.Combine("~/output/staff/", fileName)), FileMode.OpenOrCreate, FileAccess.Write))
                 {
                     fs.Write(bytes, 0, (int)bytes.Length);

@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using CKM_CommonFunction;
 using CKM_DataLayer;
 using DRMS_Models;
+using System.Globalization;
 
 
 namespace User_BL
@@ -45,5 +46,29 @@ namespace User_BL
             login_Model.member_id = string.Empty;
             return login_Model;
         }
+
+        public string GetPDF(string name)
+        {
+
+            var date = DateTime.Now.ToString("yyyyMMdd");
+            Random r = new Random();
+            int num = r.Next();
+            Random ra = new Random();
+            int num1 = ra.Next(10, 99);
+            string fileName = name +"_" + date + "_" + num + num1 + ".pdf";
+
+            return (fileName);
+        }
+
+        public string GetTextDateJapan(DateTime date)
+        {
+            string result = string.Empty;
+            JapaneseCalendar calendarJp = new System.Globalization.JapaneseCalendar();
+            CultureInfo cultureJp = new System.Globalization.CultureInfo("ja-JP", false);
+            cultureJp.DateTimeFormat.Calendar = calendarJp;
+            result = date.ToString("ggy年MM月dd日", cultureJp);
+            return result;
+        }
     }
 }
+
