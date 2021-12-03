@@ -136,7 +136,12 @@ namespace AppOnDRMS.Controllers
                 byte[] bytes = myMemoryStream.ToArray();
                 // Write out PDF from memory stream.                
                 string FolderName = Server.MapPath("/output/staff/");
-                string fileName = "staff_出力日付_乱数.pdf";
+                var date = DateTime.Now.ToString("yyyyMMdd"); 
+                Random r = new Random();
+                int num = r.Next();
+                Random ra = new Random();
+                int num1 = ra.Next(10, 99);
+                string fileName = "staff_"+ date + "_" + num + num1 +".pdf";
                 using (FileStream fs = new FileStream(Server.MapPath(Path.Combine("~/output/staff/", fileName)), FileMode.OpenOrCreate, FileAccess.Write))
                 {
                     fs.Write(bytes, 0, (int)bytes.Length);
