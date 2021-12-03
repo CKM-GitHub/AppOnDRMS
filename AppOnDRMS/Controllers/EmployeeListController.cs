@@ -29,7 +29,7 @@ namespace AppOnDRMS.Controllers
             else
                 return RedirectToAction("UserLogin", "User");
         }
-        public iTextSharp.text.Font CreateJapaneseFont()
+        public Font CreateJapaneseFont()
         {
             string font_folder = Server.MapPath("~/fonts/");
             BaseFont baseFT = BaseFont.CreateFont(font_folder + "SIMSUN.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);

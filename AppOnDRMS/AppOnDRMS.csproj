@@ -197,7 +197,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="fonts\MMRTEXTB.TTF" />
     <Content Include="fonts\SIMSUN.ttf" />
     <None Include="packages.config" />
     <Content Include="Views\User\UserLogin.cshtml" />
