@@ -8,9 +8,6 @@ using User_BL;
 using System.IO;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
-using System.Net;
-using iTextSharp.text.html.simpleparser;
-using iTextSharp.tool.xml;
 
 namespace AppOnDRMS.Controllers
 {
@@ -32,6 +29,13 @@ namespace AppOnDRMS.Controllers
             else
                 return RedirectToAction("UserLogin", "User");
         }
+        public iTextSharp.text.Font CreateJapaneseFont()
+        {
+            string font_folder = Server.MapPath("~/fonts/");
+            BaseFont baseFT = BaseFont.CreateFont(font_folder + "SIMSUN.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            iTextSharp.text.Font font = new iTextSharp.text.Font(baseFT);
+            return font;
+        }
         [HttpPost]
         public ActionResult EmployeeList(DateDifferenceModel model)
         {
@@ -40,6 +44,8 @@ namespace AppOnDRMS.Controllers
                 Document pdfDoc = new Document(PageSize.A4, 35, 35, 35, 50);
                 PdfWriter pdfWriter = PdfWriter.GetInstance(pdfDoc, myMemoryStream);
                 pdfDoc.Open();
+
+                Font font = CreateJapaneseFont();
 
                 //Add border to page
                 PdfContentByte content = pdfWriter.DirectContent;
@@ -65,38 +71,38 @@ namespace AppOnDRMS.Controllers
                 PdfPCell cell = new PdfPCell();
 
                 //Cell
-                cell = new PdfPCell(new Phrase(" 社員名：山本 太郎 "));
+                cell = new PdfPCell(new Phrase("社員名：山本 太郎", font));
                 cell.Colspan = 4;
                 cell.BorderWidthRight = 0;
                 cell.BorderWidthBottom = 0;
                 table.AddCell(cell);
-                cell = new PdfPCell(new Phrase("《社員別明細表》"));
+                cell = new PdfPCell(new Phrase("《社員別明細表》",font));
                 cell.Colspan = 3;
                 cell.BorderWidthRight = 0;
                 cell.BorderWidthLeft = 0;
                 cell.BorderWidthBottom = 0;
                 table.AddCell(cell);
-                cell = new PdfPCell(new Phrase(" 1 ページ "));
+                cell = new PdfPCell(new Phrase("1 ページ", font));
                 cell.Colspan = 2;
                 cell.BorderWidthLeft = 0;
                 cell.BorderWidthBottom = 0;
                 cell.MinimumHeight = 35;
                 table.AddCell(cell);
 
-                cell = new PdfPCell(new Phrase(" 令和 3 年 10 月 1 日～令和 3 年 10 月 31 日 "));
+                cell = new PdfPCell(new Phrase(" 令和 3 年 10 月 1 日～令和 3 年 10 月 31 日 ",font));
                 cell.Colspan = 9;
                 cell.BorderWidthTop = 0;
                 table.AddCell(cell);
 
-                table.AddCell("月/日");
-                table.AddCell("工事名");
-                table.AddCell("就業時間");
-                table.AddCell("基本");
-                table.AddCell("時外");
-                table.AddCell("深夜");
-                table.AddCell("所定外");
-                table.AddCell("法定休");
-                table.AddCell("休深");
+                table.AddCell(new Phrase("月/日",font));
+                table.AddCell(new Phrase("工事名", font));
+                table.AddCell(new Phrase("就業時間", font));
+                table.AddCell(new Phrase("基本", font));
+                table.AddCell(new Phrase("時外", font));
+                table.AddCell(new Phrase("深夜", font));
+                table.AddCell(new Phrase("所定外", font));
+                table.AddCell(new Phrase("法定休", font));
+                table.AddCell(new Phrase("休深", font));
 
                 pdfDoc.Add(table);
 
@@ -117,7 +123,12 @@ namespace AppOnDRMS.Controllers
                     fs.Write(bytes, 0, (int)bytes.Length);
                 }
                 // Write output PDF on user download path 
-                Response.Buffer = true;                Response.ContentType = "application/pdf";                Response.AddHeader("content-disposition", "attachment;filename=" + fileName);                Response.Cache.SetCacheability(HttpCacheability.NoCache);                Response.BinaryWrite(bytes);                Response.End();
+                Response.Buffer = true;
+                Response.ContentType = "application/pdf";
+                Response.AddHeader("content-disposition", "attachment;filename=" + fileName);
+                Response.Cache.SetCacheability(HttpCacheability.NoCache);
+                Response.BinaryWrite(bytes);
+                Response.End();
             }
             return View();
         }
