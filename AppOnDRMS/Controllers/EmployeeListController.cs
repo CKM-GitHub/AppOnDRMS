@@ -141,6 +141,8 @@ namespace AppOnDRMS.Controllers
                 {
                     fs.Write(bytes, 0, (int)bytes.Length);
                 }
+                // Write output PDF on user download path 
+                Response.Buffer = true;                Response.ContentType = "application/pdf";                Response.AddHeader("content-disposition", "attachment;filename=" + fileName);                Response.Cache.SetCacheability(HttpCacheability.NoCache);                Response.BinaryWrite(bytes);                Response.End();
             }
             return View();
         }
