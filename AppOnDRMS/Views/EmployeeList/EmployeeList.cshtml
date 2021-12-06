@@ -68,7 +68,7 @@
             var radio_value = "";
             radios.change(function () {
                 radio_value = $(this).val();
-                $('#b_emp').text($("#lbl_" + radio_value).text());
+                $('#txt_radio').val(radio_value);
             });
 
             //$(window).bind("beforeunload", function () {

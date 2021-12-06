@@ -8,6 +8,8 @@ using User_BL;
 using System.IO;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using System.Data;
+using Newtonsoft.Json;
 
 namespace AppOnDRMS.Controllers
 {
@@ -29,6 +31,13 @@ namespace AppOnDRMS.Controllers
             else
                 return RedirectToAction("UserLogin", "User");
         }
+        public Font CreateJapaneseFontHeader()
+        {
+            string font_folder = Server.MapPath("~/fonts/");
+            BaseFont baseFT = BaseFont.CreateFont(font_folder + "SIMSUN.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            iTextSharp.text.Font font = new iTextSharp.text.Font(baseFT,13,Font.BOLD);
+            return font;
+        }
         public Font CreateJapaneseFont()
         {
             string font_folder = Server.MapPath("~/fonts/");
@@ -39,12 +48,19 @@ namespace AppOnDRMS.Controllers
         [HttpPost]
         public ActionResult EmployeeList(DateDifferenceModel model)
         {
+            UserLoginModel login_Model = new UserLoginModel();
+            login_Model.member_id = model.Radio_Value;
+            string staff_Name = user_bl.GetUser(login_Model);
+            DataTable dt_staffName = JsonConvert.DeserializeObject<DataTable>(staff_Name);
+
+
             using (MemoryStream myMemoryStream = new MemoryStream())
             {
                 Document pdfDoc = new Document(PageSize.A4, 35, 35, 35, 50);
                 PdfWriter pdfWriter = PdfWriter.GetInstance(pdfDoc, myMemoryStream);
                 pdfDoc.Open();
 
+                Font font_Header = CreateJapaneseFontHeader();
                 Font font = CreateJapaneseFont();
 
                 //Add border to page
@@ -59,7 +75,7 @@ namespace AppOnDRMS.Controllers
 
                 //Table
                 PdfPTable table = new PdfPTable(9);
-                table.HorizontalAlignment = 0;
+                table.HorizontalAlignment = 1;
                 table.TotalWidth = 525f;
                 table.LockedWidth = true;
                 float[] widths = new float[] { 75f, 155f, 75f, 30f, 30f, 30f, 50f, 50f, 30f };
@@ -71,22 +87,23 @@ namespace AppOnDRMS.Controllers
                 PdfPCell cell = new PdfPCell();
 
                 //Cell
-                cell = new PdfPCell(new Phrase("社員名：山本 太郎", font));
+                cell = new PdfPCell(new Phrase("社員名："+ dt_staffName.Rows[0]["member_name"].ToString() + "",font_Header));
                 cell.Colspan = 4;
                 cell.BorderWidthRight = 0;
                 cell.BorderWidthBottom = 0;
                 table.AddCell(cell);
-                cell = new PdfPCell(new Phrase("《社員別明細表》",font));
+                cell = new PdfPCell(new Phrase("《社員別明細表》", font_Header));
                 cell.Colspan = 3;
                 cell.BorderWidthRight = 0;
                 cell.BorderWidthLeft = 0;
                 cell.BorderWidthBottom = 0;
                 table.AddCell(cell);
-                cell = new PdfPCell(new Phrase("1 ページ", font));
+                cell = new PdfPCell(new Phrase("1 ページ", font_Header));
                 cell.Colspan = 2;
                 cell.BorderWidthLeft = 0;
                 cell.BorderWidthBottom = 0;
                 cell.MinimumHeight = 35;
+                cell.HorizontalAlignment = Element.ALIGN_RIGHT;
                 table.AddCell(cell);
 
                 DateTime date1 = new DateTime(2020, 12, 31, 5, 10, 20);
