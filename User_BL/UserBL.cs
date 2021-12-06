@@ -62,10 +62,10 @@ namespace User_BL
         public string GetTextDateJapan(DateTime date)
         {
             string result = string.Empty;
-            JapaneseCalendar calendarJp = new System.Globalization.JapaneseCalendar();
-            CultureInfo cultureJp = new System.Globalization.CultureInfo("ja-JP", false);
-            cultureJp.DateTimeFormat.Calendar = calendarJp;
-            result = date.ToString("ggy年MM月dd日", cultureJp);
+            CultureInfo Japanese = new CultureInfo("ja-JP");
+            Japanese.DateTimeFormat.Calendar = new JapaneseCalendar();
+            result = date.ToString("ggy年M月d日", Japanese);
+
             return result;
         }
     }
