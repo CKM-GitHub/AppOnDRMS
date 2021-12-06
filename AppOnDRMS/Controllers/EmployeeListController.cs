@@ -89,7 +89,8 @@ namespace AppOnDRMS.Controllers
                 cell.MinimumHeight = 35;
                 table.AddCell(cell);
 
-                DateTime date1 = new DateTime(2020, 12, 31, 5, 10, 20);
+                DateTime date1 = new DateTime(2020, 11, 26);
+
                 string aa = user_bl.GetTextDateJapan(date1);
 
                 cell = new PdfPCell(new Phrase(aa));
