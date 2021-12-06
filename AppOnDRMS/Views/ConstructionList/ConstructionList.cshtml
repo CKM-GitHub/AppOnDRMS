@@ -37,9 +37,13 @@
                         <div class="input-group-addon">～</div>
                         <input class="form-control" id="txtendDate" type="date" value="　">
                     </div>
-                    <div class="pt-2 text-center">
-                        <button type="button" id="btn" class="btn btn-outline-secondary btn" data-pdfdata-url='@Url.Action("GetPDFData", "api/ConstructionListAPI")'>工事別明細出力</button>
-                    </div>
+                    @using (Html.BeginForm("ConstructionList", "ConstructionList", FormMethod.Post))
+                    {
+                        <input type="hidden" name="ExportData" />
+                        <div class="pt-2 text-center">
+                            <button type="submit" id="btn" class="btn btn-outline-secondary btn" data-pdfdata-url='@Url.Action("GetPDFData", "api/ConstructionListAPI")'>工事別明細出力</button>
+                        </div>
+                    }
                     <h5 id="companyname" class="text-right pt-4"></h5>
                 </div>
             </form>
@@ -59,7 +63,6 @@
 @section Scripts
 {
     <script src="@Url.Content("~/js/ConstructionList.js")"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.2.0/jspdf.umd.min.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function (e) {
@@ -82,16 +85,9 @@
                 window.prjName = $('.prjname', this).html();
             });
 
-            $('#btn').click(function () {
+            $("#btn").click(function () {
                 btnClick();
             });
         });
-
-        var doc = new jsPDF();
-        var specialElementHandlers = {
-            '#editor': function (element, renderer) {
-                return true;
-            }
-        };
     </script>
 }

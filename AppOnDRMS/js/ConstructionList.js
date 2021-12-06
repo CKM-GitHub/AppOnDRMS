@@ -35,12 +35,7 @@ function BindPDFData() {
     }
     var response = CalltoApiController($('#btn').data('pdfdata-url'), obj);
     DataToTable(response);
-
-    doc.fromHTML($('#PrintDiv').html(), 15, 15, {
-        'width': 170,
-        'elementHandlers': specialElementHandlers
-    });
-    doc.save('sample-file.pdf');
+    $("input[name='ExportData']").val($("#PrintDiv").html());
 }
 
 function DataToTable(objdata) {
