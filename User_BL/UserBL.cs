@@ -51,7 +51,7 @@ namespace User_BL
 
             var date = DateTime.Now.ToString("yyyyMMdd");
             Random r = new Random();
-            int num = r.Next();
+            int num = r.Next(1000000000,1999999999);
             Random ra = new Random();
             int num1 = ra.Next(10, 99);
             string fileName = name +"_" + date + "_" + num + num1 + ".pdf";
