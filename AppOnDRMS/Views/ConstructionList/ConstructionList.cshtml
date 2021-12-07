@@ -33,9 +33,9 @@
                 <div class="form-group pt-3">
                     <label for="x">出力期間</label>
                     <div class="datechoices input-daterange input-group">
-                        <input class="form-control" id="txtstartDate" type="date" value="　">
+                        <input class="form-control" id="txtstartDate" type="date" value="　" data-dateformat-url='@Url.Action("ChangeDateFormat", "api/ConstructionListAPI")'>
                         <div class="input-group-addon">～</div>
-                        <input class="form-control" id="txtendDate" type="date" value="　">
+                        <input class="form-control" id="txtendDate" type="date" value="　" data-dateformat-url='@Url.Action("ChangeDateFormat", "api/ConstructionListAPI")'>
                     </div>
                     @using (Html.BeginForm("ConstructionList", "ConstructionList", FormMethod.Post))
                     {

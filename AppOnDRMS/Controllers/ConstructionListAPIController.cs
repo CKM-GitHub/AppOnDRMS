@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using ConstructionList_BL;
+using User_BL;
 using DRMS_Models;
 
 namespace AppOnDRMS.Controllers
@@ -25,6 +26,14 @@ namespace AppOnDRMS.Controllers
         {
             ConstructionListBL constructionBL = new ConstructionListBL();
             return Ok(constructionBL.GetPDFData(clmodel));
+        }
+
+        [HttpPost]
+        [ActionName("ChangeDateFormat")]
+        public IHttpActionResult ChangeDateFormat(ConstructionListModel clmodel)
+        {
+            UserBL userbl = new UserBL();
+            return Ok(userbl.GetTextDateJapan(clmodel.startDate));
         }
     }
 }
