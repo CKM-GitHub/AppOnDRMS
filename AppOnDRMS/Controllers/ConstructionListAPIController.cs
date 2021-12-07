@@ -16,8 +16,9 @@ namespace AppOnDRMS.Controllers
         [ActionName("GetPrjData")]
         public IHttpActionResult GetPrjData()
         {
+            ConstructionListModel clmodel = new ConstructionListModel();
             ConstructionListBL constructionBL = new ConstructionListBL();
-            return Ok(constructionBL.GetPrjData());
+            return Ok(constructionBL.GetPrjData(clmodel));
         }
 
         [HttpPost]
