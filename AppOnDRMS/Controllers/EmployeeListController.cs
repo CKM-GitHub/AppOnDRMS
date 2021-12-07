@@ -223,9 +223,11 @@ namespace AppOnDRMS.Controllers
            public string f_Date { get; set; }
            public string t_Date { get; set; }
            public Font font_Normal { get; set; }
+            int page_Number = 0;
 
             public override void OnEndPage(PdfWriter pdfWriter, Document pdfDoc)
             {
+                page_Number = page_Number + 1;
                 //Add border to page
                 PdfContentByte content = pdfWriter.DirectContent;
                 Rectangle rectangle = new Rectangle(pdfDoc.PageSize);
@@ -261,7 +263,7 @@ namespace AppOnDRMS.Controllers
                 cell.BorderWidthBottom = 0;
                 cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                 table.AddCell(cell);
-                cell = new PdfPCell(new Phrase("1 ページ", font_Header));
+                cell = new PdfPCell(new Phrase(page_Number+"ページ", font_Header));
                 cell.Colspan = 2;
                 cell.BorderWidthLeft = 0;
                 cell.BorderWidthBottom = 0;
