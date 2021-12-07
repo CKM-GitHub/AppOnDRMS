@@ -130,12 +130,11 @@ namespace AppOnDRMS.Controllers
                 table.AddCell(cell);
 
                 cell = new PdfPCell(new Phrase(f_Date + "～" + t_Date, font));
-                cell.Colspan = 9;
+                cell.Colspan = 5;
                 cell.BorderWidthTop = 0;
                 cell.VerticalAlignment = Element.ALIGN_LEFT;
                 table.AddCell(cell);
                 cell = new PdfPCell(new Phrase("1 ページ", font_Header));
-                cell.Colspan = 2;
                 cell.BorderWidthTop = 0;
                 cell.BorderWidthLeft = 0;
                 cell.MinimumHeight = 35;
