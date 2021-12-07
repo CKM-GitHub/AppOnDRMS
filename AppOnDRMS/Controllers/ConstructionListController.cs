@@ -28,11 +28,12 @@ namespace AppOnDRMS.Controllers
         [ValidateInput(false)]
         public FileResult ConstructionList(string ExportData)
         {
-            string name = "staff";
+            string name = "project";
             string fileName = userbl.GetPDF(name);
             using (MemoryStream stream = new System.IO.MemoryStream())
             {
-                StringReader reader = new StringReader(ExportData);
+                //StringReader reader = new StringReader(ExportData);
+                var pdfData = ChangeToStream(ExportData);
                 Document PdfFile = new Document(PageSize.A4, 35, 35, 35, 50);
                 PdfWriter writer = PdfWriter.GetInstance(PdfFile, stream);
                 PdfFile.Open();
@@ -49,7 +50,7 @@ namespace AppOnDRMS.Controllers
                 content.Rectangle(rectangle.Left, rectangle.Bottom, rectangle.Width, rectangle.Height);
                 content.Stroke();
 
-                XMLWorkerHelper.GetInstance().ParseXHtml(writer, PdfFile, reader);
+                XMLWorkerHelper.GetInstance().ParseXHtml(writer, PdfFile, pdfData, System.Text.Encoding.ASCII);
                 PdfFile.Close();
 
                 byte[] bytes = stream.ToArray();
@@ -76,6 +77,16 @@ namespace AppOnDRMS.Controllers
             BaseFont baseFT = BaseFont.CreateFont(font_folder + "SIMSUN.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
             iTextSharp.text.Font font = new iTextSharp.text.Font(baseFT);
             return font;
+        }
+
+        public Stream ChangeToStream(string s)
+        {
+            var stream = new MemoryStream();
+            var writer = new StreamWriter(stream);
+            writer.Write(s);
+            writer.Flush();
+            stream.Position = 0;
+            return stream;
         }
     }
 }

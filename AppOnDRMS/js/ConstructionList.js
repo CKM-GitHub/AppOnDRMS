@@ -34,22 +34,29 @@ function BindPDFData() {
         endDate: $('#txtendDate').val()
     }
     var response = CalltoApiController($('#btn').data('pdfdata-url'), obj);
-    DataToTable(response);
+
+    var sdate = {
+        startDate: $('#txtstartDate').val()
+    }
+    var startDate = CalltoApiController($('#txtstartDate').data('dateformat-url'), sdate);
+
+    var edate = {
+        startDate: $('#txtendDate').val()
+    }
+    var endDate = CalltoApiController($('#txtendDate').data('dateformat-url'), edate);
+    DataToTable(response, startDate, endDate);
     $("input[name='ExportData']").val($("#PrintDiv").html());
 }
 
-function DataToTable(objdata) {
+function DataToTable(objdata, startDate, endDate) {
     if (!(objdata == "[]")) {
-        debugger;
         var row = '';
-        var startDate = $('#txtstartDate').val().split('-');
-        var endDate = $('#txtendDate').val().split('-');
         var data = typeof JSONString != 'object' ? JSON.parse(objdata) : JSONString;
         if (data.length > 0) {
             $('#tblPDF thead').append($('<tr>'));
             $('#tblPDF thead tr:last-child').append($('<th rowspan="2" colspan="2" class="border-0" style="text-align:center;vertical-align:middle;">工事別明細表</th><th colspan="6" class="border-0">工事名 : ' + window.prjName + '</th>'));
             $('#tblPDF thead').append($('<tr>'));
-            $('#tblPDF thead tr:last-child').append($('<th colspan="5" class="border-0">令和 ' + startDate[0] + '年 ' + startDate[1] + '月 ' + startDate[2] + '日～令和 ' + endDate[0] + '年 ' + endDate[1] + '月 ' + endDate[2] + '日</th><th class="border-0 float-right">1ページ</th>'));
+            $('#tblPDF thead tr:last-child').append($('<th colspan="5" class="border-0">' + startDate + ' ～ ' + endDate + '</th><th class="border-0 float-right">1ページ</th>'));
             $('#tblPDF thead').append($('<tr style="text-align:center;vertical-align:middle;">'));
             $('#tblPDF thead tr:last-child').append($('<td>月/日</td><td>社員名</td><td>作業名</td><td colspan="2">就業時間帯</td><td>人工</td><td>時間外</td><td>深夜</td>'));
         }
