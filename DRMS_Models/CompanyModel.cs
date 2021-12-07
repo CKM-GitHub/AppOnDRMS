@@ -13,13 +13,4 @@ namespace DRMS_Models
         public string project_work_name { get; set; }
         public decimal project_work_time { get; set; }
     }
-    public class RootObject
-    {
-        public Results Results { get; set; }
-    }
-
-    public class Results
-    {
-        public Dictionary<string, CompanyModel> JobCodes { get; set; }
-    }
 }

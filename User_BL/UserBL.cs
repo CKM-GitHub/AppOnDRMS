@@ -70,10 +70,11 @@ namespace User_BL
         }
         public DataTable GetStaff_PDFData(DateDifferenceModel model)
         {
+            
             SqlParameter[] sqlparams = new SqlParameter[3];
             sqlparams[0] = new SqlParameter("@memberID", model.Radio_Value);
-            sqlparams[1] = new SqlParameter("@StartDate", model.From_Date);
-            sqlparams[2] = new SqlParameter("@EndDate", model.To_Date);
+            sqlparams[1] = new SqlParameter("@StartDate", model.From_Date.ToString("yyyy-MM-dd"));
+            sqlparams[2] = new SqlParameter("@EndDate", model.To_Date.ToString("yyyy-MM-dd"));
             return cKMDL.SelectDatatable("GetStaff_PDFDate", ff.GetConnectionWithDefaultPath("AppOnDRMS"), sqlparams);
         }
     }
