@@ -10,6 +10,7 @@ using DRMS_Models;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.Data;
+using AppOnDRMS.Models;
 
 namespace AppOnDRMS.Controllers
 {
@@ -75,146 +76,149 @@ namespace AppOnDRMS.Controllers
         [HttpPost]
         public ActionResult ConstructionList(ConstructionListModel model)
         {
+            //Change Japanese Calendar
             ConstructionListBL constructionListBL = new ConstructionListBL();
             DateTime from_Date = new DateTime(model.startDate.Year, model.startDate.Month, model.startDate.Day);
             string f_Date = userbl.GetTextDateJapan(from_Date);
-
             DateTime to_Date = new DateTime(model.endDate.Year, model.endDate.Month, model.endDate.Day);
             string t_Date = userbl.GetTextDateJapan(to_Date);
 
+            //get pdf body data
             DataTable dt_Body = constructionListBL.GetPDFData(model);
 
+            //Header, body and color font create
+            PDF_Font font_Class = new PDF_Font();
+            string font_folder = Server.MapPath("~/fonts/");
+            Font font_Header = font_Class.CreateJapaneseFontHeader(font_folder);
+            Font font = font_Class.CreateJapaneseFont(font_folder);
+            Font font_Color = font_Class.CreateJapaneseFont_Color(font_folder);
 
             using (MemoryStream myMemoryStream = new MemoryStream())
             {
-                Document pdfDoc = new Document(PageSize.A4, 35, 35, 35, 50);
-                PdfWriter pdfWriter = PdfWriter.GetInstance(pdfDoc, myMemoryStream);
-                pdfDoc.Open();
-
-                Font font_Header = CreateJapaneseFontHeader();
-                Font font = CreateJapaneseFont();
-                Font font_Color = CreateJapaneseFont_Color();
-
-                //Add border to page
-                PdfContentByte content = pdfWriter.DirectContent;
-                Rectangle rectangle = new Rectangle(pdfDoc.PageSize);
-                rectangle.Left += pdfDoc.LeftMargin;
-                rectangle.Right -= pdfDoc.RightMargin;
-                rectangle.Top -= pdfDoc.TopMargin;
-                rectangle.Bottom += pdfDoc.BottomMargin;
-                content.Rectangle(rectangle.Left, rectangle.Bottom, rectangle.Width, rectangle.Height);
-                content.Stroke();
-
-                //Table
-                PdfPTable table = new PdfPTable(8);
-                table.HorizontalAlignment = 1;
-                table.TotalWidth = 525f;
-                table.LockedWidth = true;
-                float[] widths = new float[] { 50f, 90f, 195f, 30f, 30f, 30f, 50f, 50f};
-                table.SetWidths(widths);
-                table.SpacingBefore = 20f;
-                table.SpacingAfter = 30f;
-
-                //Cell no 1
-                PdfPCell cell = new PdfPCell();
-
-                //Cell
-                cell = new PdfPCell(new Phrase("工事別明細表", font_Header));
-                cell.Colspan = 2;
-                cell.Rowspan = 2;
-                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-                table.AddCell(cell);
-                cell = new PdfPCell(new Phrase("工事名 : " + model.prjName, font_Header));
-                cell.Colspan = 6;
-                cell.VerticalAlignment = Element.ALIGN_LEFT;
-                table.AddCell(cell);
-
-                cell = new PdfPCell(new Phrase(f_Date + "～" + t_Date, font));
-                cell.Colspan = 5;
-                cell.BorderWidthTop = 0;
-                cell.VerticalAlignment = Element.ALIGN_LEFT;
-                table.AddCell(cell);
-                cell = new PdfPCell(new Phrase("1 ページ", font_Header));
-                cell.BorderWidthTop = 0;
-                cell.BorderWidthLeft = 0;
-                cell.MinimumHeight = 35;
-                cell.HorizontalAlignment = Element.ALIGN_RIGHT;
-                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-                table.AddCell(cell);
-
-                table.AddCell(new PdfPCell(new Phrase("月/日", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
-                table.AddCell(new PdfPCell(new Phrase("社員名", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
-                table.AddCell(new PdfPCell(new Phrase("作業名", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
-                table.AddCell(new PdfPCell(new Phrase("就業時間帯", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f, Colspan = 2 });
-                table.AddCell(new PdfPCell(new Phrase("人工", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
-                table.AddCell(new PdfPCell(new Phrase("時間外", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
-                table.AddCell(new PdfPCell(new Phrase("深夜", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
-                
-                //for (int i = 0; i < dt_Body.Rows.Count; i++)
-                //{
-                //    table.AddCell(new PdfPCell(new Phrase(dt_Body.Rows[i]["japan_day"].ToString(), font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
-                //    if (dt_Body.Rows[i]["project_name"].ToString() == "休")
-                //        table.AddCell(new PdfPCell(new Phrase(dt_Body.Rows[i]["project_name"].ToString(), font_Color)) { HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
-                //    else
-                //        table.AddCell(new PdfPCell(new Phrase(dt_Body.Rows[i]["project_name"].ToString(), font)) { HorizontalAlignment = Element.ALIGN_LEFT, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
-                //    table.AddCell(new PdfPCell(new Phrase(dt_Body.Rows[i]["working_hour"].ToString(), font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
-                //    table.AddCell(new PdfPCell(new Phrase(dt_Body.Rows[i]["J_Basic"].ToString(), font)) { HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
-                //    table.AddCell(new PdfPCell(new Phrase(dt_Body.Rows[i]["Col_5"].ToString(), font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
-                //    table.AddCell(new PdfPCell(new Phrase(dt_Body.Rows[i]["Col_6"].ToString(), font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
-                //    table.AddCell(new PdfPCell(new Phrase(dt_Body.Rows[i]["Col_7"].ToString(), font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
-                //    table.AddCell(new PdfPCell(new Phrase(dt_Body.Rows[i]["Col_8"].ToString(), font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
-                //    table.AddCell(new PdfPCell(new Phrase(dt_Body.Rows[i]["Col_9"].ToString(), font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
-                //}
-
-                //pdfDoc.Add(table);
-
-                pdfWriter.CloseStream = false;
-                pdfDoc.Close();
-
-                byte[] bytes = myMemoryStream.ToArray();
-                // Write out PDF from memory stream.                
-                string FolderName = Server.MapPath("/output/staff/");
-
-                string name = "project";
-                string fileName = userbl.GetPDF(name);
-                using (FileStream fs = new FileStream(Server.MapPath(Path.Combine("~/output/staff/", fileName)), FileMode.OpenOrCreate, FileAccess.Write))
+                using (Document pdfDoc = new Document(PageSize.A4, 35, 35, 100, 62))
                 {
-                    fs.Write(bytes, 0, (int)bytes.Length);
+                    //calling for pdf header and page number
+                    var header = new Project_PageEvent();
+                    using (PdfWriter pdfWriter = PdfWriter.GetInstance(pdfDoc, myMemoryStream))
+                    {
+                        pdfDoc.Open();
+                        //for pdf header 
+                        pdfWriter.PageEvent = header;
+                        header.prjName = model.prjName;
+                        header.font_Header = font_Header;
+                        header.f_Date = f_Date;
+                        header.t_Date = t_Date;
+                        header.font_Normal = font;
+
+                        //Table
+                        PdfPTable table = new PdfPTable(8);
+                        table.HorizontalAlignment = 1;
+                        table.TotalWidth = 525f;
+                        table.LockedWidth = true;
+                        float[] widths = new float[] { 65f, 100f, 150f, 40f, 40f, 60f, 40f, 30f };
+                        table.SetWidths(widths);
+                        table.SpacingBefore = 20f;
+                        table.SpacingAfter = 30f;
+
+                        table.AddCell(new PdfPCell(new Phrase("月/日", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
+                        table.AddCell(new PdfPCell(new Phrase("社員名", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
+                        table.AddCell(new PdfPCell(new Phrase("作業名", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
+                        table.AddCell(new PdfPCell(new Phrase("就業時間帯", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f, Colspan = 2 });
+                        table.AddCell(new PdfPCell(new Phrase("人工", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
+                        table.AddCell(new PdfPCell(new Phrase("時間外", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
+                        table.AddCell(new PdfPCell(new Phrase("深夜", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
+
+                        string work_date = string.Empty;
+                        string project_work_name = string.Empty;
+                        string att_start_time = string.Empty;
+                        string att_end_time = string.Empty;
+                        int total_time = 0;
+                        for (int i = 0; i < dt_Body.Rows.Count; i++)
+                        {
+                            if (work_date != dt_Body.Rows[i]["work_date"].ToString())
+                                work_date = dt_Body.Rows[i]["work_date"].ToString();
+                            table.AddCell(new PdfPCell(new Phrase(dt_Body.Rows[i]["work_date"].ToString(), font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
+                            table.AddCell(new PdfPCell(new Phrase(dt_Body.Rows[i]["member_name"].ToString(), font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
+                            if(dt_Body.Rows[i]["project_work_name"].ToString() == project_work_name && dt_Body.Rows[i]["work_date"].ToString() == work_date)
+                                table.AddCell(new PdfPCell(new Phrase("〃", font)) { HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
+                            else
+                            {
+                                project_work_name = dt_Body.Rows[i]["project_work_name"].ToString();
+                                table.AddCell(new PdfPCell(new Phrase(dt_Body.Rows[i]["project_work_name"].ToString(), font)) { HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
+                            }
+                            if (dt_Body.Rows[i]["att_start_time"].ToString() == att_start_time && dt_Body.Rows[i]["work_date"].ToString() == work_date)
+                                table.AddCell(new PdfPCell(new Phrase("〃", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
+                            else
+                            {
+                                att_start_time = dt_Body.Rows[i]["att_start_time"].ToString();
+                                table.AddCell(new PdfPCell(new Phrase(dt_Body.Rows[i]["att_start_time"].ToString(), font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
+                            }
+                            if (dt_Body.Rows[i]["att_end_time"].ToString() == att_end_time && dt_Body.Rows[i]["work_date"].ToString() == work_date)
+                                table.AddCell(new PdfPCell(new Phrase("〃", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
+                            else
+                            {
+                                att_end_time = dt_Body.Rows[i]["att_end_time"].ToString();
+                                table.AddCell(new PdfPCell(new Phrase(dt_Body.Rows[i]["att_end_time"].ToString(), font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
+                            }
+                            if (dt_Body.Rows[i]["artificial"].ToString() == "1.0")
+                                total_time += 1;
+                            table.AddCell(new PdfPCell(new Phrase(dt_Body.Rows[i]["artificial"].ToString(), font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
+                            table.AddCell(new PdfPCell(new Phrase(dt_Body.Rows[i]["off_hours"].ToString(), font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
+                            table.AddCell(new PdfPCell(new Phrase(dt_Body.Rows[i]["midnight"].ToString(), font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
+                        }
+
+                        //Cell
+                        PdfPCell cell = new PdfPCell();
+                        //Total footer
+                        cell = new PdfPCell(new Phrase("合計", font));
+                        cell.Colspan = 5;
+                        cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                        table.AddCell(cell);
+                        cell = new PdfPCell(new Phrase(total_time + " 人工", font));
+                        cell.BorderWidthLeft = 0;
+                        cell.MinimumHeight = 20f;
+                        cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                        cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                        table.AddCell(cell);
+                        table.AddCell(new Phrase(" ", font));
+                        table.AddCell(new Phrase(" ", font));
+
+                        pdfDoc.Add(table);
+                        pdfWriter.CloseStream = false;
+                        pdfDoc.Close();
+
+                        byte[] bytes = myMemoryStream.ToArray();
+                        // Write out PDF from memory stream.                
+                        string FolderName = Server.MapPath("/output/project/");
+
+                        string name = "project";
+                        string fileName = userbl.GetPDF(name);
+                        using (FileStream fs = new FileStream(Server.MapPath(Path.Combine("~/output/project/", fileName)), FileMode.OpenOrCreate, FileAccess.Write))
+                        {
+                            fs.Write(bytes, 0, (int)bytes.Length);
+                        }
+                        // Write output PDF on user download path 
+                        Response.Buffer = true;
+                        Response.ContentType = "application/pdf";
+                        Response.AddHeader("content-disposition", "attachment;filename=" + fileName);
+                        Response.Cache.SetCacheability(HttpCacheability.NoCache);
+                        Response.BinaryWrite(bytes);
+                        Response.End();
+                    }
                 }
-                // Write output PDF on user download path 
-                Response.Buffer = true;
-                Response.ContentType = "application/pdf";
-                Response.AddHeader("content-disposition", "attachment;filename=" + fileName);
-                Response.Cache.SetCacheability(HttpCacheability.NoCache);
-                Response.BinaryWrite(bytes);
-                Response.End();
+
+                ////Add border to page
+                //PdfContentByte content = pdfWriter.DirectContent;
+                //Rectangle rectangle = new Rectangle(pdfDoc.PageSize);
+                //rectangle.Left += pdfDoc.LeftMargin;
+                //rectangle.Right -= pdfDoc.RightMargin;
+                //rectangle.Top -= pdfDoc.TopMargin;
+                //rectangle.Bottom += pdfDoc.BottomMargin;
+                //content.Rectangle(rectangle.Left, rectangle.Bottom, rectangle.Width, rectangle.Height);
+                //content.Stroke();
+
             }
             return View();
-        }
-
-        public Font CreateJapaneseFontHeader()
-        {
-            string font_folder = Server.MapPath("~/fonts/");
-            BaseFont baseFT = BaseFont.CreateFont(font_folder + "SIMSUN.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-            iTextSharp.text.Font font = new iTextSharp.text.Font(baseFT, 13, Font.BOLD);
-            return font;
-        }
-
-        public Font CreateJapaneseFont()
-        {
-            string font_folder = Server.MapPath("~/fonts/");
-            BaseFont baseFT = BaseFont.CreateFont(font_folder + "SIMSUN.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-            iTextSharp.text.Font font = new iTextSharp.text.Font(baseFT);
-            return font;
-        }
-
-        public Font CreateJapaneseFont_Color()
-        {
-            string font_folder = Server.MapPath("~/fonts/");
-            BaseFont baseFT = BaseFont.CreateFont(font_folder + "SIMSUN.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-            iTextSharp.text.Font font = new iTextSharp.text.Font(baseFT, 11);
-            font.Color = BaseColor.RED;
-            return font;
         }
 
         public Stream ChangeToStream(string s)

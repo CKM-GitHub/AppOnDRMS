@@ -79,7 +79,6 @@
             BindData(JSON.parse(response));
 
             $("input[type=radio]").change(function () {
-                debugger;
                 $('#txtprjCD').val($(this).attr('id'));
                 $('#txtprjName').val($(this).val());
             });
@@ -104,9 +103,10 @@
         }
 
         function trclick(ctrl) {
-            $('.selected').removeClass('selected');
-            $(ctrl).addClass("selected");
-            $('.prjid', ctrl).prop("checked", true);
+            //$('.selected').removeClass('selected');
+            //$(ctrl).addClass("selected");
+            //$('.prjid', ctrl).prop("checked", true);
+            //$('.prjid', ctrl).change();
         }
     </script>
 }
