@@ -192,6 +192,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="output\project\" />
     <Folder Include="output\staff\" />
   </ItemGroup>
   <ItemGroup>
