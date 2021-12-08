@@ -120,13 +120,13 @@ namespace AppOnDRMS.Controllers
                         table.SpacingBefore = 20f;
                         table.SpacingAfter = 30f;
 
-                        table.AddCell(new PdfPCell(new Phrase("月/日", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
-                        table.AddCell(new PdfPCell(new Phrase("社員名", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
-                        table.AddCell(new PdfPCell(new Phrase("作業名", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
-                        table.AddCell(new PdfPCell(new Phrase("就業時間帯", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f, Colspan = 2 });
-                        table.AddCell(new PdfPCell(new Phrase("人工", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
-                        table.AddCell(new PdfPCell(new Phrase("時間外", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
-                        table.AddCell(new PdfPCell(new Phrase("深夜", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
+                        table.AddCell(new PdfPCell(new Phrase("月/日", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f, BackgroundColor = new iTextSharp.text.BaseColor(228, 246, 248) });
+                        table.AddCell(new PdfPCell(new Phrase("社員名", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f, BackgroundColor = new iTextSharp.text.BaseColor(228, 246, 248) });
+                        table.AddCell(new PdfPCell(new Phrase("作業名", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f, BackgroundColor = new iTextSharp.text.BaseColor(228, 246, 248) });
+                        table.AddCell(new PdfPCell(new Phrase("就業時間帯", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f, Colspan = 2, BackgroundColor = new iTextSharp.text.BaseColor(228, 246, 248) });
+                        table.AddCell(new PdfPCell(new Phrase("人工", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f, BackgroundColor = new iTextSharp.text.BaseColor(228, 246, 248) });
+                        table.AddCell(new PdfPCell(new Phrase("時間外", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f, BackgroundColor = new iTextSharp.text.BaseColor(228, 246, 248) });
+                        table.AddCell(new PdfPCell(new Phrase("深夜", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f, BackgroundColor = new iTextSharp.text.BaseColor(228, 246, 248) });
 
                         string work_date = string.Empty;
                         string project_work_name = string.Empty;
@@ -170,18 +170,18 @@ namespace AppOnDRMS.Controllers
                         //Cell
                         PdfPCell cell = new PdfPCell();
                         //Total footer
-                        cell = new PdfPCell(new Phrase("合計", font));
+                        cell = new PdfPCell(new Phrase("合計", font)) { BackgroundColor = new iTextSharp.text.BaseColor(228, 246, 248) };
                         cell.Colspan = 5;
                         cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                         table.AddCell(cell);
-                        cell = new PdfPCell(new Phrase(total_time + " 人工", font));
+                        cell = new PdfPCell(new Phrase(total_time + " 人工", font)) { BackgroundColor = new iTextSharp.text.BaseColor(228, 246, 248) };
                         cell.BorderWidthLeft = 0;
                         cell.MinimumHeight = 20f;
                         cell.HorizontalAlignment = Element.ALIGN_CENTER;
                         cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                         table.AddCell(cell);
-                        table.AddCell(new Phrase(" ", font));
-                        table.AddCell(new Phrase(" ", font));
+                        table.AddCell(new PdfPCell(new Phrase(" ", font)) { BackgroundColor = new iTextSharp.text.BaseColor(228, 246, 248) });
+                        table.AddCell(new PdfPCell(new Phrase(" ", font)) { BackgroundColor = new iTextSharp.text.BaseColor(228, 246, 248) });
 
                         pdfDoc.Add(table);
                         pdfWriter.CloseStream = false;
