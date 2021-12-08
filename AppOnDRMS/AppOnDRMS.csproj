@@ -209,6 +209,7 @@
     <Content Include="Views\User\Management.cshtml" />
     <Content Include="Views\ConstructionList\ConstructionList.cshtml" />
     <Content Include="Views\EmployeeList\EmployeeList.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ConstructionList_BL\ConstructionList_BL.csproj">
