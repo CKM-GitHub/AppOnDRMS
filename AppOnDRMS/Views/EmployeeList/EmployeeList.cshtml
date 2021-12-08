@@ -78,9 +78,13 @@
                     return false;
                 }
             });
+
+            $('#txt_startDate').change(function () {
+                document.getElementById("txt_endDate").setAttribute("min", $('#txt_startDate').val());
+            });
+
             $('#txt_endDate').change(function () {
-                if ($(this).val() < $('#txt_startDate').val())
-                    $(this).val($('#txt_startDate').val());
+                document.getElementById("txt_startDate").setAttribute("max", $('#txt_endDate').val());
             });
             
         });
