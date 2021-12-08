@@ -71,13 +71,22 @@
                 $('#txt_radio').val(radio_value);
             });
 
-           
+
             $('.form-signin').submit(function () {
                 if ($("#txt_startDate").val() == "" || $("#txt_endDate").val() == "" || radio_value == "") {
                     alert("入力内容を確認してください")
                     return false;
                 }
             });
+
+            $('#txt_startDate').change(function () {
+                document.getElementById("txt_endDate").setAttribute("min", $('#txt_startDate').val());
+            });
+
+            $('#txt_endDate').change(function () {
+                document.getElementById("txt_startDate").setAttribute("max", $('#txt_endDate').val());
+            });
+            
         });
 
             function SetData(data) {
