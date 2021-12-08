@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using CKM_CommonFunction;
 using CKM_DataLayer;
 using DRMS_Models;
+using System.Data;
 
 namespace ConstructionList_BL
 {
@@ -14,18 +15,20 @@ namespace ConstructionList_BL
     {
         CKMDL dl = new CKMDL();
         FileFunction ff = new FileFunction();
-        public string GetPrjData()
+        public string GetPrjData(ConstructionListModel clmodel)
         {
-            return dl.SelectJson("GetProjectName", ff.GetConnectionWithDefaultPath("AppOnDRMS"));
+            clmodel.Sqlprms = new SqlParameter[1];
+            clmodel.Sqlprms[0] = new SqlParameter("@prjCD", clmodel.prjCD);
+            return dl.SelectJson("GetProjectName", ff.GetConnectionWithDefaultPath("AppOnDRMS"), clmodel.Sqlprms);
         }
 
-        public string GetPDFData(ConstructionListModel clmodel)
+        public DataTable GetPDFData(ConstructionListModel clmodel)
         {
             clmodel.Sqlprms = new SqlParameter[3];
             clmodel.Sqlprms[0] = new SqlParameter("@prjCD", clmodel.prjCD);
             clmodel.Sqlprms[1] = new SqlParameter("@startDate", clmodel.startDate);
             clmodel.Sqlprms[2] = new SqlParameter("@endDate", clmodel.endDate);
-            return dl.SelectJson("GetProject_PDFData", ff.GetConnectionWithDefaultPath("AppOnDRMS"), clmodel.Sqlprms);
+            return dl.SelectDatatable("GetProject_PDFData", ff.GetConnectionWithDefaultPath("AppOnDRMS"), clmodel.Sqlprms);
         }
     }
 }
