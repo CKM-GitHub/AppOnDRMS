@@ -82,7 +82,7 @@ namespace AppOnDRMS.Controllers
                         table.HorizontalAlignment = 1;
                         table.TotalWidth = 525f;
                         table.LockedWidth = true;
-                        float[] widths = new float[] { 50f, 180f, 75f, 30f, 30f, 30f, 50f, 50f, 30f };
+                        float[] widths = new float[] { 56f, 180f, 75f, 30f, 28f, 28f, 50f, 50f, 28f };
                         table.SetWidths(widths);
                         table.SpacingBefore = 20f;
                         table.SpacingAfter = 30f;
