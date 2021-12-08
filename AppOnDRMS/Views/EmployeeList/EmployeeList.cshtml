@@ -71,10 +71,7 @@
                 $('#txt_radio').val(radio_value);
             });
 
-            //$(window).bind("beforeunload", function () {
-            //    delete_cookie("Admin_Member_ID");
-            //   // return confirm("Do you really want to close?");
-            //});
+           
             $('.form-signin').submit(function () {
                 if ($("#txt_startDate").val() == "" || $("#txt_endDate").val() == "" || radio_value == "") {
                     alert("入力内容を確認してください")
@@ -89,9 +86,5 @@
                 }
                 $('.0').focus(); $('.0').attr("tabindex", 1);
              }
-            function delete_cookie(name) {
-                document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-            }
-
     </script>
 }
