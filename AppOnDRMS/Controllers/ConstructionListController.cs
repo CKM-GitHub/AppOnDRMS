@@ -132,28 +132,33 @@ namespace AppOnDRMS.Controllers
                         string project_work_name = string.Empty;
                         string att_start_time = string.Empty;
                         string att_end_time = string.Empty;
-                        int total_time = 0;
+                        int total_time = 0; int count = 0;
                         for (int i = 0; i < dt_Body.Rows.Count; i++)
                         {
                             if (work_date != dt_Body.Rows[i]["work_date"].ToString())
+                            {
                                 work_date = dt_Body.Rows[i]["work_date"].ToString();
+                                count = 1;
+                            }
+                            else
+                                count += 1;
                             table.AddCell(new PdfPCell(new Phrase(dt_Body.Rows[i]["work_date"].ToString(), font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
-                            table.AddCell(new PdfPCell(new Phrase(dt_Body.Rows[i]["member_name"].ToString(), font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
-                            if(dt_Body.Rows[i]["project_work_name"].ToString() == project_work_name && dt_Body.Rows[i]["work_date"].ToString() == work_date)
-                                table.AddCell(new PdfPCell(new Phrase("〃", font)) { HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
+                            table.AddCell(new PdfPCell(new Phrase(count + ": " + dt_Body.Rows[i]["member_name"].ToString(), font)) { HorizontalAlignment = Element.ALIGN_LEFT, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
+                            if(dt_Body.Rows[i]["project_work_name"].ToString() == project_work_name && dt_Body.Rows[i]["work_date"].ToString() == work_date && count != 1)
+                                table.AddCell(new PdfPCell(new Phrase("〃", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
                             else
                             {
                                 project_work_name = dt_Body.Rows[i]["project_work_name"].ToString();
-                                table.AddCell(new PdfPCell(new Phrase(dt_Body.Rows[i]["project_work_name"].ToString(), font)) { HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
+                                table.AddCell(new PdfPCell(new Phrase(dt_Body.Rows[i]["project_work_name"].ToString(), font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
                             }
-                            if (dt_Body.Rows[i]["att_start_time"].ToString() == att_start_time && dt_Body.Rows[i]["work_date"].ToString() == work_date)
+                            if (dt_Body.Rows[i]["att_start_time"].ToString() == att_start_time && dt_Body.Rows[i]["work_date"].ToString() == work_date && count != 1)
                                 table.AddCell(new PdfPCell(new Phrase("〃", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
                             else
                             {
                                 att_start_time = dt_Body.Rows[i]["att_start_time"].ToString();
                                 table.AddCell(new PdfPCell(new Phrase(dt_Body.Rows[i]["att_start_time"].ToString(), font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
                             }
-                            if (dt_Body.Rows[i]["att_end_time"].ToString() == att_end_time && dt_Body.Rows[i]["work_date"].ToString() == work_date)
+                            if (dt_Body.Rows[i]["att_end_time"].ToString() == att_end_time && dt_Body.Rows[i]["work_date"].ToString() == work_date && count != 1)
                                 table.AddCell(new PdfPCell(new Phrase("〃", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f });
                             else
                             {
