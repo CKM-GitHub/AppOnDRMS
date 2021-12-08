@@ -89,6 +89,14 @@
                     return false;
                 }
             });
+
+            $('#txtstartDate').change(function () {
+                document.getElementById("txtendDate").setAttribute("min", $('#txtstartDate').val());
+            });
+
+            $('#txtendDate').change(function () {
+                document.getElementById("txtstartDate").setAttribute("max", $('#txtendDate').val());
+            });
         });
 
         function BindData(data) {
