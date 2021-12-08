@@ -101,9 +101,9 @@
 
         function BindData(data) {
             for (var i = 0; i < data.length; i++) {
-                $('#tblConstruction > tbody:last-child').append('<tr onclick="trclick(this)"><td><input type="radio" class="prjid" name="name_select_one" id="' + data[i].project_id + '" value="' + data[i].project_name + '"  />   <label id="lbl_' + data[i].project_id + '" class="prjname">' + data[i].project_name + '</label></td></tr>');
+                $('#tblConstruction > tbody:last-child').append('<tr onclick="trclick(this)"><td><input type="radio" class="prjid ' + i + '" name="name_select_one" id="' + data[i].project_id + '" value="' + data[i].project_name + '"  />   <label id="lbl_' + data[i].project_id + '" class="prjname">' + data[i].project_name + '</label></td></tr>');
             }
-            $('#0').focus(); $('#0').attr("tabindex", 1);
+            $('.0').focus(); $('.0').attr("tabindex", 1);
 
             $('#txtstartDate').attr("tabindex", 2);
             $('#txtendDate').attr("tabindex", 3);
