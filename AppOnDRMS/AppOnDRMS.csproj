@@ -152,6 +152,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\PDF_Font.cs" />
+    <Compile Include="Models\Project_PageEvent.cs" />
     <Compile Include="Models\Staff_PageEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
