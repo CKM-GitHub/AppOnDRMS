@@ -211,10 +211,18 @@ namespace AppOnDRMS.Controllers
 
                             if (dt_Body.Rows[i]["artificial"].ToString() == artificial && dt_Body.Rows[i]["work_date"].ToString() == work_date && count != 1)
                             {
-                                if (i + 1 < dt_Body.Rows.Count && dt_Body.Rows[i + 1]["work_date"].ToString() == work_date)
-                                    table.AddCell(new PdfPCell(new Phrase("〃", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f, BorderWidthBottom = 0, BorderWidthTop = 0 });
+                                if(artificial == "1.0")
+                                {
+                                    if (i + 1 < dt_Body.Rows.Count && dt_Body.Rows[i + 1]["work_date"].ToString() == work_date)
+                                        table.AddCell(new PdfPCell(new Phrase("〃", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f, BorderWidthBottom = 0, BorderWidthTop = 0 });
+                                    else
+                                        table.AddCell(new PdfPCell(new Phrase("〃", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f, BorderWidthTop = 0 });
+                                }
                                 else
-                                    table.AddCell(new PdfPCell(new Phrase("〃", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f, BorderWidthTop = 0 });
+                                if (i + 1 < dt_Body.Rows.Count && dt_Body.Rows[i + 1]["work_date"].ToString() == work_date)
+                                    table.AddCell(new PdfPCell(new Phrase(dt_Body.Rows[i]["artificial"].ToString(), font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f, BorderWidthBottom = 0, BorderWidthTop = 0 });
+                                else
+                                    table.AddCell(new PdfPCell(new Phrase(dt_Body.Rows[i]["artificial"].ToString(), font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f, BorderWidthTop = 0 });
                             }
                             else
                             {
