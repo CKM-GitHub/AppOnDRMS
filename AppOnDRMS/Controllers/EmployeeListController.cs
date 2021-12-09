@@ -154,7 +154,7 @@ namespace AppOnDRMS.Controllers
 
                         byte[] bytes = myMemoryStream.ToArray();
                         // Write out PDF from memory stream.                
-                        string FolderName = Server.MapPath("/output/staff/");
+                        string FolderName = Server.MapPath("~/output/staff/");
 
                         string name = "staff";
                         string fileName = user_bl.GetPDF(name);
