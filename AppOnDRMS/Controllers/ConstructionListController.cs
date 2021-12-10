@@ -242,7 +242,7 @@ namespace AppOnDRMS.Controllers
                         }
                         total_time = dt_Body.Rows.Count;
 
-                        float a = CalculatePdfPTableHeight(table);
+                        float a = font_Class.CalculatePdfPTableHeight(table);
                         while (pdfDoc.Top - 162 >= a)
                         {
                             table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = 20f });
@@ -253,7 +253,7 @@ namespace AppOnDRMS.Controllers
                             table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = 20f });
                             table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = 20f });
                             table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = 20f });
-                            a = CalculatePdfPTableHeight(table);
+                            a = font_Class.CalculatePdfPTableHeight(table);
                         }
 
                         //Cell
@@ -308,26 +308,6 @@ namespace AppOnDRMS.Controllers
 
             }
             return View();
-        }
-
-
-        public static float CalculatePdfPTableHeight(PdfPTable table)
-        {
-            using (MemoryStream ms = new MemoryStream())
-            {
-                using (Document doc = new Document(PageSize.TABLOID))
-                {
-                    using (PdfWriter w = PdfWriter.GetInstance(doc, ms))
-                    {
-                        doc.Open();
-
-                        table.WriteSelectedRows(0, table.Rows.Count, 0, 0, w.DirectContent);
-
-                        doc.Close();
-                        return table.TotalHeight;
-                    }
-                }
-            }
         }
 
         public Stream ChangeToStream(string s)
