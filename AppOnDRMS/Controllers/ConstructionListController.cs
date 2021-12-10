@@ -242,19 +242,36 @@ namespace AppOnDRMS.Controllers
                         }
                         total_time = dt_Body.Rows.Count;
 
-                        float a = font_Class.CalculatePdfPTableHeight(table);
-                        while (pdfDoc.Top - 162 >= a)
-                        {
-                            table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = 20f });
-                            table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = 20f });
-                            table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = 20f });
-                            table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = 20f });
-                            table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = 20f });
-                            table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = 20f });
-                            table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = 20f });
-                            table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = 20f });
-                            a = font_Class.CalculatePdfPTableHeight(table);
-                        }
+                        //float a = font_Class.CalculatePdfPTableHeight(table);
+                        //while (pdfDoc.Top - 162 >= a)
+                        //{
+                        //    table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = 20f });
+                        //    table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = 20f });
+                        //    table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = 20f });
+                        //    table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = 20f });
+                        //    table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = 20f });
+                        //    table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = 20f });
+                        //    table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = 20f });
+                        //    table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = 20f });
+                        //    a = font_Class.CalculatePdfPTableHeight(table);
+                        //}
+                        int pg_count = table.Rows.Count / 34;
+                        int last_pg = table.Rows.Count % 34;
+                        //if (last_pg != 0)
+                        //{
+                            while (last_pg <= 29)
+                            {
+                                table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = 20f });
+                                table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = 20f });
+                                table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = 20f });
+                                table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = 20f });
+                                table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = 20f });
+                                table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = 20f });
+                                table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = 20f });
+                                table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = 20f });
+                                last_pg += 1;
+                            }
+                        //}
 
                         //Cell
                         PdfPCell cell = new PdfPCell();
