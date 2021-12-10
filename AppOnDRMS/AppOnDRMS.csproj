@@ -201,6 +201,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\SIMSUN.ttf" />
+    <Content Include="fonts\Meiryo W53 Regular.otf" />
+    <Content Include="fonts\Meiryo UI W53 Regular.ttf" />
     <None Include="packages.config" />
     <Content Include="Views\User\UserLogin.cshtml" />
     <Content Include="Views\Shared\_DRMSLayout.cshtml" />

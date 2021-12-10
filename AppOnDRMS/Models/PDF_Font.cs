@@ -12,20 +12,22 @@ namespace AppOnDRMS.Models
     {
         public Font CreateJapaneseFontHeader(string font_folder)
         {
-            BaseFont baseFT = BaseFont.CreateFont(font_folder + "SIMSUN.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            // BaseFont baseFT = BaseFont.CreateFont(font_folder + "SIMSUN.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            // BaseFont baseFT = BaseFont.CreateFont(font_folder + "Meiryo W53 Regular.otf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED); 
+            BaseFont baseFT = BaseFont.CreateFont(font_folder + "Meiryo UI W53 Regular.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
             Font font = new iTextSharp.text.Font(baseFT, 13, Font.BOLD);
             return font;
         }
         public Font CreateJapaneseFont(string font_folder)
         {
-            BaseFont baseFT = BaseFont.CreateFont(font_folder + "SIMSUN.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-            Font font = new iTextSharp.text.Font(baseFT, 11);
+            BaseFont baseFT = BaseFont.CreateFont(font_folder + "Meiryo UI W53 Regular.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            Font font = new iTextSharp.text.Font(baseFT, 10);
             return font;
         }
         public Font CreateJapaneseFont_Color(string font_folder)
         {
-            BaseFont baseFT = BaseFont.CreateFont(font_folder + "SIMSUN.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-            iTextSharp.text.Font font = new iTextSharp.text.Font(baseFT, 11);
+            BaseFont baseFT = BaseFont.CreateFont(font_folder + "Meiryo UI W53 Regular.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            iTextSharp.text.Font font = new iTextSharp.text.Font(baseFT, 10);
             font.Color = BaseColor.RED;
             return font;
         }
