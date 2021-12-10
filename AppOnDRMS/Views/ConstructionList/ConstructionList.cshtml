@@ -73,6 +73,7 @@
 
 @section Scripts
 {
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function (e) {
             var response = CalltoApiController('@Url.Action("GetPrjData", "api/ConstructionListAPI")', null);
@@ -97,6 +98,15 @@
             $('#txtendDate').change(function () {
                 document.getElementById("txtstartDate").setAttribute("max", $('#txtendDate').val());
             });
+
+            $(window).bind("beforeunload", function () {
+                debugger;
+                if (typeof event != 'undefined') {
+                    if (performance.navigation.type != performance.navigation.TYPE_BACK_FORWARD
+                        && performance.navigation.type != performance.navigation.TYPE_NAVIGATE && performance.navigation.type != performance.navigation.TYPE_RESERVED)
+                        delete_cookie("Admin_Member_ID");
+                }
+            });
         });
 
         function BindData(data) {
@@ -115,6 +125,10 @@
             //$(ctrl).addClass("selected");
             //$('.prjid', ctrl).prop("checked", true);
             //$('.prjid', ctrl).change();
+        }
+
+        function delete_cookie(name) {
+            document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
         }
     </script>
 }
