@@ -99,14 +99,14 @@
                 document.getElementById("txtstartDate").setAttribute("max", $('#txtendDate').val());
             });
 
-            $(window).bind("beforeunload", function () {
-                debugger;
-                if (typeof event != 'undefined') {
-                    if (performance.navigation.type != performance.navigation.TYPE_BACK_FORWARD
-                        && performance.navigation.type != performance.navigation.TYPE_NAVIGATE && performance.navigation.type != performance.navigation.TYPE_RESERVED)
-                        delete_cookie("Admin_Member_ID");
-                }
-            });
+            //$(window).bind("beforeunload", function () {
+            //    debugger;
+            //    if (typeof event != 'undefined') {
+            //        if (performance.navigation.type != performance.navigation.TYPE_BACK_FORWARD
+            //            && performance.navigation.type != performance.navigation.TYPE_NAVIGATE && performance.navigation.type != performance.navigation.TYPE_RESERVED)
+            //            delete_cookie("Admin_Member_ID");
+            //    }
+            //});
         });
 
         function BindData(data) {
