@@ -94,11 +94,11 @@
                 
             })
 
-            $(window).bind("beforeunload", function () {
-                if (bl_Check != "true") {
-                    delete_cookie("Other_Member_ID");
-                }
-            });
+            //$(window).bind("beforeunload", function () {
+            //    if (bl_Check != "true") {
+            //        delete_cookie("Other_Member_ID");
+            //    }
+            //});
         });
 
         // clear
@@ -121,9 +121,9 @@
             $("#txtmember_name").text(data[0].member_name);
         }
 
-        function delete_cookie(name) {
-            document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-        }
+        //function delete_cookie(name) {
+        //    document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        //}
         
     </script>
 }
