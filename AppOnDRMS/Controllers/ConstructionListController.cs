@@ -133,7 +133,7 @@ namespace AppOnDRMS.Controllers
                         string att_start_time = string.Empty;
                         string att_end_time = string.Empty;
                         string artificial = string.Empty;
-                        int total_time = 0; int count = 0;
+                        string total_time = string.Empty; int count = 0;
                         for (int i = 0; i < dt_Body.Rows.Count; i++)
                         {
                             if (work_date != dt_Body.Rows[i]["work_date"].ToString())
@@ -240,7 +240,7 @@ namespace AppOnDRMS.Controllers
                             else
                                 table.AddCell(new PdfPCell(new Phrase(dt_Body.Rows[i]["midnight"].ToString(), font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f, BorderWidthTop = 0 });
                         }
-                        total_time = dt_Body.Rows.Count;
+                        total_time = dt_Body.Rows.Count + ".0";
 
                         //float a = font_Class.CalculatePdfPTableHeight(table);
                         //while (pdfDoc.Top - 162 >= a)
@@ -276,7 +276,7 @@ namespace AppOnDRMS.Controllers
                         //Cell
                         PdfPCell cell = new PdfPCell();
                         //Total footer
-                        cell = new PdfPCell(new Phrase("合計", font)) { BackgroundColor = new iTextSharp.text.BaseColor(228, 246, 248) };
+                        cell = new PdfPCell(new Phrase(" 合計", font)) { BackgroundColor = new iTextSharp.text.BaseColor(228, 246, 248) };
                         cell.Colspan = 5;
                         cell.VerticalAlignment = Element.ALIGN_MIDDLE;
                         table.AddCell(cell);
