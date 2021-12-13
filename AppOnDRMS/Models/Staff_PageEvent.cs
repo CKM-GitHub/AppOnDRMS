@@ -57,6 +57,7 @@ namespace AppOnDRMS.Models
             table.AddCell(cell);
             cell = new PdfPCell(new Phrase(page_Number + "ページ", font_Header));
             cell.Colspan = 2;
+            cell.PaddingRight = 10;
             cell.BorderWidthLeft = 0;
             cell.BorderWidthBottom = 0;
             cell.MinimumHeight = 35;
