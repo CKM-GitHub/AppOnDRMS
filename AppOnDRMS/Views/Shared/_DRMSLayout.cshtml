@@ -20,3 +20,20 @@
     @RenderSection("styles", required: false)
 </body>
 </html>
+<script>
+    var width = screen.width;
+    $(document).ready(function () {
+        if (width < 640)
+            runMobile();
+        else
+            runDesktop();
+    });
+
+    var runMobile = function () {
+       // alert("Mobile");
+    }
+
+    var runDesktop = function () {
+       // alert("Desktop");
+    }
+</script>
