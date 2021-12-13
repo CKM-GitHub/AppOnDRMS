@@ -70,6 +70,7 @@ namespace AppOnDRMS.Models
             table.AddCell(cell);
             cell = new PdfPCell(new Phrase(page_Number + "ページ", font_Normal));
             cell.Colspan = 3;
+            cell.PaddingRight = 10;
             cell.BorderWidthTop = 0;
             cell.BorderWidthLeft = 0;
             cell.BorderWidthBottom = 0;
