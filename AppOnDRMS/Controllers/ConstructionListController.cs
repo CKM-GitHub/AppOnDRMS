@@ -95,7 +95,7 @@ namespace AppOnDRMS.Controllers
 
             using (MemoryStream myMemoryStream = new MemoryStream())
             {
-                using (Document pdfDoc = new Document(PageSize.A4, 35, 35, 100, 62))
+                using (Document pdfDoc = new Document(PageSize.A4, 35, 35, 120, 62))
                 {
                     //calling for pdf header and page number
                     var header = new Project_PageEvent();
@@ -119,14 +119,6 @@ namespace AppOnDRMS.Controllers
                         table.SetWidths(widths);
                         table.SpacingBefore = 20f;
                         table.SpacingAfter = 30f;
-
-                        table.AddCell(new PdfPCell(new Phrase("月/日", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f, BackgroundColor = new iTextSharp.text.BaseColor(228, 246, 248), BorderWidthLeft = 0.3f, BorderWidthRight = 0.3f, BorderWidthBottom = 0.3f, BorderWidthTop = 0.3f, PaddingBottom = 5f });
-                        table.AddCell(new PdfPCell(new Phrase("社員名", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f, BackgroundColor = new iTextSharp.text.BaseColor(228, 246, 248), BorderWidthLeft = 0.3f, BorderWidthRight = 0.3f, BorderWidthBottom = 0.3f, BorderWidthTop = 0.3f, PaddingBottom = 5f });
-                        table.AddCell(new PdfPCell(new Phrase("作業名", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f, BackgroundColor = new iTextSharp.text.BaseColor(228, 246, 248), BorderWidthLeft = 0.3f, BorderWidthRight = 0.3f, BorderWidthBottom = 0.3f, BorderWidthTop = 0.3f, PaddingBottom = 5f });
-                        table.AddCell(new PdfPCell(new Phrase("就業時間帯", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f, Colspan = 2, BackgroundColor = new iTextSharp.text.BaseColor(228, 246, 248), BorderWidthLeft = 0.3f, BorderWidthRight = 0.3f, BorderWidthBottom = 0.3f, BorderWidthTop = 0.3f, PaddingBottom = 5f });
-                        table.AddCell(new PdfPCell(new Phrase("人工", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f, BackgroundColor = new iTextSharp.text.BaseColor(228, 246, 248), BorderWidthLeft = 0.3f, BorderWidthRight = 0.3f, BorderWidthBottom = 0.3f, BorderWidthTop = 0.3f, PaddingBottom = 5f });
-                        table.AddCell(new PdfPCell(new Phrase("時間外", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f, BackgroundColor = new iTextSharp.text.BaseColor(228, 246, 248), BorderWidthLeft = 0.3f, BorderWidthRight = 0.3f, BorderWidthBottom = 0.3f, BorderWidthTop = 0.3f, PaddingBottom = 5f });
-                        table.AddCell(new PdfPCell(new Phrase("深夜", font)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f, BackgroundColor = new iTextSharp.text.BaseColor(228, 246, 248), BorderWidthLeft = 0.3f, BorderWidthRight = 0.3f, BorderWidthBottom = 0.3f, BorderWidthTop = 0.3f, PaddingBottom = 5f });
 
                         string work_date = string.Empty;
                         string project_work_name = string.Empty;
@@ -259,7 +251,7 @@ namespace AppOnDRMS.Controllers
                         int last_pg = table.Rows.Count % 34;
                         //if (last_pg != 0)
                         //{
-                            while (last_pg <= 29)
+                            while (last_pg <= 28)
                             {
                                 table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = 20f, BorderWidthLeft = 0.3f, BorderWidthRight = 0.3f, BorderWidthBottom = 0.3f, BorderWidthTop = 0.3f, PaddingBottom = 5f });
                                 table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = 20f, BorderWidthLeft = 0.3f, BorderWidthRight = 0.3f, BorderWidthBottom = 0.3f, BorderWidthTop = 0.3f, PaddingBottom = 5f });
