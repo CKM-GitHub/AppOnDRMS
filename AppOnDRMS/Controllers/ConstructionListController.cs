@@ -239,10 +239,8 @@ namespace AppOnDRMS.Controllers
                         //    table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = 20f });
                         //    a = font_Class.CalculatePdfPTableHeight(table);
                         //}
-                        int pg_count = table.Rows.Count / 34;
-                        int last_pg = table.Rows.Count % 34;
-                        if (pg_count > 0)
-                            last_pg += 1;
+                        int pg_count = table.Rows.Count / 33;
+                        int last_pg = table.Rows.Count % 33;
                         //if (last_pg != 0)
                         //{
                             while (last_pg <= 28)
@@ -278,7 +276,9 @@ namespace AppOnDRMS.Controllers
                         table.AddCell(new PdfPCell(new Phrase(" ", font)) { BackgroundColor = new iTextSharp.text.BaseColor(228, 246, 248) });
                         table.AddCell(new PdfPCell(new Phrase(" ", font)) { BackgroundColor = new iTextSharp.text.BaseColor(228, 246, 248), BorderWidthRight = 2f });
 
-                        table.AddCell(new PdfPCell(new Phrase(" ", font)) { Colspan = 8, MinimumHeight = 60, BorderWidthLeft = 2f, BorderWidthRight = 2f, BorderWidthBottom = 2f });
+                        table.AddCell(new PdfPCell(new Phrase(" ", font)) { Colspan = 8, MinimumHeight = 20, BorderWidthLeft = 2f, BorderWidthRight = 2f, BorderWidthBottom = 0 });
+                        table.AddCell(new PdfPCell(new Phrase(" ", font)) { Colspan = 8, MinimumHeight = 20, BorderWidthLeft = 2f, BorderWidthRight = 2f, BorderWidthBottom = 0, BorderWidthTop = 0 });
+                        table.AddCell(new PdfPCell(new Phrase(" ", font)) { Colspan = 8, MinimumHeight = 20, BorderWidthLeft = 2f, BorderWidthRight = 2f, BorderWidthBottom = 2f, BorderWidthTop = 0 });
 
                         pdfDoc.Add(table);
                         pdfWriter.CloseStream = false;
