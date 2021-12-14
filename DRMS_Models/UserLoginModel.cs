@@ -14,5 +14,7 @@ namespace DRMS_Models
         public int company_id { get; set; }
        
         public string company_name { get; set; }
+
+        public int window_Size { get; set; }
     }
 }

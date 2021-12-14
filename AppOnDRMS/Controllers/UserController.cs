@@ -28,12 +28,21 @@ namespace AppOnDRMS.Controllers
         [HttpPost]
         public ActionResult UserLogin(UserLoginModel m_Login)
         {
-            if(m_Login.member_id.ToLower().ToString() == "admin")
+            if(m_Login.window_Size > 640)
             {
-                HttpCookie cookie = new HttpCookie("Admin_Member_ID", m_Login.member_id);
-                Response.Cookies.Add(cookie);
-                return RedirectToAction("Management", "User");
-            }                     
+                //if (m_Login.member_id.ToLower().ToString() == "admin")
+                //{
+                    HttpCookie cookie = new HttpCookie("Admin_Member_ID", m_Login.member_id);
+                    Response.Cookies.Add(cookie);
+                    return RedirectToAction("Management", "User");
+                //}
+            }
+            //if(m_Login.member_id.ToLower().ToString() == "admin")
+            //{
+            //    HttpCookie cookie = new HttpCookie("Admin_Member_ID", m_Login.member_id);
+            //    Response.Cookies.Add(cookie);
+            //    return RedirectToAction("Management", "User");
+            //}                     
             else
             {
                 DataTable dt = (DataTable)JsonConvert.DeserializeObject(user_bl.GetUser(m_Login), (typeof(DataTable)));
