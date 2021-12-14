@@ -112,9 +112,11 @@ namespace AppOnDRMS.Controllers
                         //float a = font_Class.CalculatePdfPTableHeight(table);
                         int pg_count = table.Rows.Count / 34;
                         int last_pg = table.Rows.Count % 34;
+                        if (pg_count > 0)
+                            last_pg += 1;
                         //if(last_pg != 0)
                         //{
-                            while (last_pg <= 27)
+                            while (last_pg <= 28)
                             {
                                 table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = 20f, BorderWidthLeft = 2f, BorderWidthRight = 0.3f, BorderWidthBottom = 0.3f, BorderWidthTop = 0.3f, PaddingBottom = 5f });
                                 table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = 20f, BorderWidthLeft = 0.3f, BorderWidthRight = 0.3f, BorderWidthBottom = 0.3f, BorderWidthTop = 0.3f, PaddingBottom = 5f });

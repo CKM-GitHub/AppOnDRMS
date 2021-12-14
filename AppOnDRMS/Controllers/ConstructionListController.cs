@@ -241,6 +241,8 @@ namespace AppOnDRMS.Controllers
                         //}
                         int pg_count = table.Rows.Count / 34;
                         int last_pg = table.Rows.Count % 34;
+                        if (pg_count > 0)
+                            last_pg += 1;
                         //if (last_pg != 0)
                         //{
                             while (last_pg <= 28)
