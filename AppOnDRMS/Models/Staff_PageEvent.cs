@@ -34,7 +34,7 @@ namespace AppOnDRMS.Models
             table.HorizontalAlignment = 1;
             table.TotalWidth = 526f;
             table.LockedWidth = true;
-            float[] widths = new float[] { 56f, 180f, 75f, 30f, 28f, 28f, 50f, 50f, 28f };
+            float[] widths = new float[] { 56.5f, 180f, 75f, 30f, 28f, 28f, 50f, 50f, 28.5f };
             table.SetWidths(widths);
             table.SpacingBefore = 20f;
             table.SpacingAfter = 30f;
