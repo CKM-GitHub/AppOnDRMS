@@ -33,7 +33,7 @@ namespace AppOnDRMS.Models
 
             PdfPTable table = new PdfPTable(8);
             table.HorizontalAlignment = 1;
-            table.TotalWidth = 525f;
+            table.TotalWidth = 526f;
             table.LockedWidth = true;
             float[] widths = new float[] { 65f, 100f, 150f, 40f, 40f, 60f, 40f, 30f };
             table.SetWidths(widths);
@@ -95,7 +95,7 @@ namespace AppOnDRMS.Models
             table.AddCell(new PdfPCell(new Phrase("深夜", font_Normal)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = 20f, BackgroundColor = new iTextSharp.text.BaseColor(228, 246, 248), BorderWidthLeft = 0.3f, BorderWidthRight = 2f, BorderWidthBottom = 0.3f, BorderWidthTop = 0.3f, PaddingBottom = 5f });
 
             float cellHeight = pdfDoc.TopMargin;
-            table.WriteSelectedRows(0, -1, 35, 807, pdfWriter.DirectContent);
+            table.WriteSelectedRows(0, -1, 34.5f, 807, pdfWriter.DirectContent);
         }
     }
 }
