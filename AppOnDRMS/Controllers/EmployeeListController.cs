@@ -89,25 +89,28 @@ namespace AppOnDRMS.Controllers
 
                         int work_day_count = 0;
                         int work_day_hour = 0;
-                        float line_height; int row_add = 0;
+                        float line_height = 20f; float tline_height; int row_add = 0;
                         int pg_count = dt_Body.Rows.Count / 33;
                         int last_pg = dt_Body.Rows.Count % 33;
 
                         if (last_pg <= 29)
-                            line_height = 20f;
+                            tline_height = 20f;
                         else if (last_pg == 30)
-                            line_height = 19.4117f;
+                            tline_height = 19.4117f;
                         else if (last_pg == 31)
-                            line_height = 18.85f;
+                            tline_height = 18.85f;
                         else
                         {
                             row_add = 33 - last_pg;
                             last_pg = 0;
-                            line_height = 20f;
+                            tline_height = 20f;
                         }
 
                         for (int i = 0; i < dt_Body.Rows.Count; i++)
                         {
+                            if (i >= (pg_count * 33))
+                                line_height = tline_height;
+
                             table.AddCell(new PdfPCell(new Phrase(dt_Body.Rows[i]["japan_day"].ToString(), font)) { HorizontalAlignment = Element.ALIGN_LEFT, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = line_height, BorderWidthLeft = 1.7f, BorderWidthRight = 1f, BorderWidthBottom = 0.3f, BorderWidthTop = 0.3f, PaddingLeft = 5f, PaddingBottom = 5f });
                             if (dt_Body.Rows[i]["project_name"].ToString() == "休")
                                 table.AddCell(new PdfPCell(new Phrase(dt_Body.Rows[i]["project_name"].ToString(), font_Color)) { HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_MIDDLE, FixedHeight = line_height, BorderWidthLeft = 0.3f, BorderWidthRight = 1f, BorderWidthBottom = 0.3f, BorderWidthTop = 0.3f, PaddingBottom = 5f });
