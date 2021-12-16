@@ -316,14 +316,14 @@ namespace AppOnDRMS.Controllers
 
         public static void AddNullRoll_To_Table(PdfPTable table, Font font, float line_height)
         {
-            table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = line_height, BorderWidthLeft = 1.7f, BorderWidthRight = 1f, BorderWidthBottom = 0.3f, BorderWidthTop = 0.3f, PaddingBottom = 5f });
             table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = line_height, BorderWidthLeft = 0.3f, BorderWidthRight = 1f, BorderWidthBottom = 0.3f, BorderWidthTop = 0.3f, PaddingBottom = 5f });
             table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = line_height, BorderWidthLeft = 0.3f, BorderWidthRight = 1f, BorderWidthBottom = 0.3f, BorderWidthTop = 0.3f, PaddingBottom = 5f });
             table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = line_height, BorderWidthLeft = 0.3f, BorderWidthRight = 1f, BorderWidthBottom = 0.3f, BorderWidthTop = 0.3f, PaddingBottom = 5f });
             table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = line_height, BorderWidthLeft = 0.3f, BorderWidthRight = 1f, BorderWidthBottom = 0.3f, BorderWidthTop = 0.3f, PaddingBottom = 5f });
             table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = line_height, BorderWidthLeft = 0.3f, BorderWidthRight = 1f, BorderWidthBottom = 0.3f, BorderWidthTop = 0.3f, PaddingBottom = 5f });
             table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = line_height, BorderWidthLeft = 0.3f, BorderWidthRight = 1f, BorderWidthBottom = 0.3f, BorderWidthTop = 0.3f, PaddingBottom = 5f });
-            table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = line_height, BorderWidthLeft = 0.3f, BorderWidthRight = 1.7f, BorderWidthBottom = 0.3f, BorderWidthTop = 0.3f, PaddingBottom = 5f });
+            table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = line_height, BorderWidthLeft = 0.3f, BorderWidthRight = 1f, BorderWidthBottom = 0.3f, BorderWidthTop = 0.3f, PaddingBottom = 5f });
+            table.AddCell(new PdfPCell(new Phrase("", font)) { FixedHeight = line_height, BorderWidthLeft = 0.3f, BorderWidthRight = 1f, BorderWidthBottom = 0.3f, BorderWidthTop = 0.3f, PaddingBottom = 5f });
         }
     }
 }
