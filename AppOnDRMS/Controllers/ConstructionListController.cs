@@ -347,7 +347,11 @@ namespace AppOnDRMS.Controllers
                         pdfDoc.Close();
 
                         byte[] bytes = myMemoryStream.ToArray();
-                        // Write out PDF from memory stream.                
+                        // Write out PDF from memory stream.
+                        if (!Directory.Exists("~/output"))
+                            Directory.CreateDirectory(Server.MapPath("~/output"));
+                        if (!Directory.Exists("~/output/project"))
+                            Directory.CreateDirectory(Server.MapPath("~/output/project"));
                         string FolderName = Server.MapPath("~/output/project/");
 
                         string name = "project";
