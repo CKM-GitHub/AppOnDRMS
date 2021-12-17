@@ -120,6 +120,7 @@ namespace AppOnDRMS.Models
             table.WriteSelectedRows(0, -1, 35, 807, pdfWriter.DirectContent);
             mainTable.WriteSelectedRows(0, -1, 34, 807, pdfWriter.DirectContent);
             mainTable.AddCell(table);
+
         }
     }
 }
