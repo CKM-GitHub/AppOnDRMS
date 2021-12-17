@@ -28,13 +28,30 @@ namespace AppOnDRMS.Controllers
         [HttpPost]
         public ActionResult UserLogin(UserLoginModel m_Login)
         {
-            if(m_Login.window_Size > 640)
+            if (m_Login.window_Size > 640)
             {
-                //if (m_Login.member_id.ToLower().ToString() == "admin")
-                //{
+                DataTable dt = (DataTable)JsonConvert.DeserializeObject(user_bl.GetUser(m_Login), (typeof(DataTable)));
+                if (dt.Rows.Count > 0)
+                {
+                    //if (m_Login.member_id.ToLower().ToString() == "admin")
+                    //{
                     HttpCookie cookie = new HttpCookie("Admin_Member_ID", m_Login.member_id);
                     Response.Cookies.Add(cookie);
                     return RedirectToAction("Management", "User");
+                    //}
+                }
+                else
+                {
+                    UserLoginModel login_Model = user_bl.GetUserLoginModel();
+                    ViewBag.NotExistUser = "True";
+                    return View(login_Model);
+                }
+
+                //if (m_Login.member_id.ToLower().ToString() == "admin")
+                //{
+                //HttpCookie cookie = new HttpCookie("Admin_Member_ID", m_Login.member_id);
+                //    Response.Cookies.Add(cookie);
+                //    return RedirectToAction("Management", "User");
                 //}
             }
             //if(m_Login.member_id.ToLower().ToString() == "admin")
@@ -46,7 +63,7 @@ namespace AppOnDRMS.Controllers
             else
             {
                 DataTable dt = (DataTable)JsonConvert.DeserializeObject(user_bl.GetUser(m_Login), (typeof(DataTable)));
-                if (dt.Rows.Count>0)
+                if (dt.Rows.Count > 0)
                 {
                     HttpCookie cookie = new HttpCookie("Other_Member_ID", m_Login.member_id);
                     Response.Cookies.Add(cookie);
@@ -58,7 +75,7 @@ namespace AppOnDRMS.Controllers
                     ViewBag.NotExistUser = "True";
                     return View(login_Model);
                 }
-            } 
+            }
         }
         public ActionResult Management()
         {
