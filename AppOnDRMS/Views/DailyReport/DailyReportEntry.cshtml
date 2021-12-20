@@ -13,9 +13,9 @@
 
                 <h4 class="form-signin-heading">日報入力</h4>
                 <hr class="colorgraph"><br>
-              
+
                 <label class="required" for="txtmember_name" style="padding-right: 0.2em">社員名 :</label><label class="required" for="txtmember_name" id="txtmember_name"></label><br>
-                
+
                 <label class="required" for="txtdate">日付</label> <br>
                 <input type="date" id="txtdate" class="form-control" name="date" placeholder="2021/11/16" required="" /><br>
 
@@ -41,10 +41,10 @@
 {
     <script type="text/javascript">
         $(document).ready(function (e) {
-           
+
             $("#txtdate").focus();
 
-            //bind project name 
+            //bind project name
             BindProjectType();
 
             //data accept from cookie
@@ -65,7 +65,16 @@
                     alert("未入力項目があります");
                 }
                 else {
-                    var obj = {
+                    var start_time = $("#att_start_date").val();
+                    var end_time = $("#att_end_date").val();
+
+                    if (start_time >= end_time) {
+                        $("#att_start_date").focus();
+                        alert("未入力項目があります");
+                        return false;
+                    }
+                    else {
+                        var obj = {
                     member_id: '@Model.member_id',
                     work_date: $("#txtdate").val(),
                     project_id: $("#pjname").val(),
@@ -88,17 +97,11 @@
                             Clear();
                             $("#txtdate").focus();
                         }
-                    }  
-
+                    }
+                    }
                 }
-                
-            })
 
-            //$(window).bind("beforeunload", function () {
-            //    if (bl_Check != "true") {
-            //        delete_cookie("Other_Member_ID");
-            //    }
-            //});
+            })
         });
 
         // clear
@@ -107,7 +110,7 @@
             $('#pjname').val('0001');
             $("#att_start_date").val('');
             $("#att_end_date").val('');
-           
+
         }
 
         function BindProjectType() {
@@ -124,6 +127,6 @@
         //function delete_cookie(name) {
         //    document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
         //}
-        
+
     </script>
 }
